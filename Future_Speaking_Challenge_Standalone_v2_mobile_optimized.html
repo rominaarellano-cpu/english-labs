@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Future Speaking Challenge</title>
+<style>
+:root {
+  --bg:#f6f2ff;
+  --ink:#25243a;
+  --muted:#6d6b85;
+  --purple:#6c4ccf;
+  --purple2:#8b6ee8;
+  --pink:#ff7ab6;
+  --yellow:#ffd75e;
+  --green:#55c59a;
+  --card:#ffffff;
+  --line:#e7e0f7;
+  --shadow:0 18px 45px rgba(73,51,139,.14);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(255,215,94,.24),transparent 28%),
+    radial-gradient(circle at 90% 12%,rgba(255,122,182,.20),transparent 28%),
+    linear-gradient(135deg,#f8f4ff,#eef8ff);
+  color:var(--ink);
+  min-height:100vh;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:22px}
+.header{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  margin-bottom:16px;
+}
+.brand h1{margin:0;font-size:clamp(1.5rem,3vw,2.5rem);letter-spacing:-.03em}
+.brand p{margin:5px 0 0;color:var(--muted)}
+.badge{
+  background:var(--purple);color:white;padding:9px 13px;border-radius:999px;
+  font-weight:800;font-size:.82rem;white-space:nowrap;
+}
+.game{
+  display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start;
+}
+.playzone,.support{
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(8px);
+  border:1px solid var(--line);
+  border-radius:26px;
+  box-shadow:var(--shadow);
+}
+.playzone{padding:22px}
+.support{padding:16px;position:sticky;top:14px}
+.counter{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px
+}
+.counter span{
+  background:#f0ebff;color:var(--purple);border-radius:999px;padding:7px 11px;
+  font-size:.82rem;font-weight:900
+}
+.card-stage{
+  min-height:390px;display:flex;align-items:center;justify-content:center;
+}
+.prompt-card{
+  width:min(760px,100%);
+  min-height:310px;
+  border-radius:28px;
+  padding:30px;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.96),rgba(247,243,255,.98));
+  border:2px solid #dfd4ff;
+  box-shadow:0 20px 36px rgba(80,55,150,.12);
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  animation:pop .25s ease;
+}
+.prompt-card::before{
+  content:"";
+  position:absolute;right:-55px;top:-55px;width:155px;height:155px;
+  border-radius:50%;background:rgba(255,122,182,.14)
+}
+.prompt-card::after{
+  content:"";
+  position:absolute;left:-45px;bottom:-55px;width:140px;height:140px;
+  border-radius:50%;background:rgba(85,197,154,.13)
+}
+.card-label{
+  position:absolute;top:18px;left:20px;
+  color:var(--purple);font-size:.78rem;font-weight:900;letter-spacing:.08em
+}
+.prompt{
+  font-size:clamp(1.65rem,3.6vw,3rem);
+  line-height:1.15;
+  font-weight:900;
+  letter-spacing:-.03em;
+  z-index:1;
+}
+.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+button{
+  border:none;border-radius:16px;padding:13px 18px;font-size:1rem;font-weight:900;
+  cursor:pointer;transition:.16s ease
+}
+button:hover{transform:translateY(-2px)}
+.next{background:var(--purple);color:#fff;min-width:160px}
+.restart{background:#efe9ff;color:var(--purple)}
+.sound{background:#fff4ce;color:#7a5b00;border:1px solid #f0dc93}
+.progressbar{
+  height:10px;background:#ede8f8;border-radius:999px;overflow:hidden;margin-top:17px
+}
+.progressbar span{display:block;height:100%;background:linear-gradient(90deg,var(--purple),var(--pink));width:0%}
+.support-title{
+  font-size:1rem;font-weight:900;margin:0 0 10px;color:var(--purple)
+}
+.support-card{
+  border:1px solid var(--line);border-radius:16px;padding:11px;margin:9px 0;background:#fff
+}
+.support-card h3{margin:0 0 3px;font-size:.95rem;color:var(--purple)}
+.use{font-size:.76rem;color:var(--muted);font-weight:800;margin-bottom:7px}
+.form-row{
+  display:grid;grid-template-columns:24px 1fr;gap:6px;align-items:start;
+  font-size:.77rem;line-height:1.25;margin:5px 0
+}
+.sign{font-weight:900;color:var(--purple)}
+.example{color:var(--muted);font-size:.72rem;margin-top:1px}
+.help-es{
+  margin-top:11px;padding:10px;border-radius:14px;background:#f8f5ff;color:#4d456a;
+  font-size:.78rem;line-height:1.35
+}
+.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:20}
+.piece{position:absolute;width:10px;height:18px;border-radius:2px;animation:fall 1.4s linear forwards}
+.done{
+  text-align:center;font-size:1.4rem;font-weight:900;color:var(--purple);margin-top:8px
+}
+@keyframes pop{from{transform:scale(.97);opacity:.4}to{transform:scale(1);opacity:1}}
+@keyframes fall{to{transform:translateY(110vh) rotate(520deg);opacity:.9}}
+@media(max-width:900px){
+  .game{grid-template-columns:1fr}
+  .support{position:static}
+}
+@media(max-width:620px){
+  .wrap{padding:12px}
+  .header{align-items:flex-start;flex-direction:column}
+  .playzone{padding:14px;border-radius:20px}
+  .prompt-card{min-height:290px;padding:24px 20px;border-radius:22px}
+  .prompt{font-size:clamp(1.55rem,8vw,2.2rem)}
+  .actions button{flex:1 1 140px}
+}
+
+/* v2 · mobile-first refinements */
+html,body{max-width:100%;overflow-x:hidden}
+button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+@media(max-width:900px){
+  .wrap{max-width:760px}
+  .game{grid-template-columns:1fr}
+  .support{position:static}
+}
+@media(max-width:620px){
+  body{background:linear-gradient(180deg,#f8f4ff,#eef8ff)}
+  .wrap{padding:10px 10px 16px}
+  .header{gap:8px;margin-bottom:10px}
+  .brand h1{font-size:1.55rem;line-height:1.05}
+  .brand p{font-size:.9rem;line-height:1.25}
+  .badge{font-size:.72rem;padding:7px 10px}
+  .game{gap:11px}
+  .playzone,.support{border-radius:18px}
+  .playzone{padding:11px}
+  .support{padding:11px}
+  .counter{margin-bottom:7px}
+  .counter span{font-size:.72rem;padding:5px 8px}
+  .card-stage{min-height:0}
+  .prompt-card{
+    min-height:245px;
+    padding:42px 18px 22px;
+    border-radius:20px;
+  }
+  .card-label{top:14px;left:16px;font-size:.7rem}
+  .prompt{
+    font-size:clamp(1.45rem,7.2vw,2rem);
+    line-height:1.16;
+    overflow-wrap:anywhere;
+  }
+  .actions{
+    position:sticky;
+    bottom:8px;
+    z-index:8;
+    padding:8px 0 2px;
+    background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.96) 28%);
+  }
+  .actions button{
+    min-height:48px;
+    font-size:.92rem;
+    padding:12px 14px;
+  }
+  .next{flex:1.3 1 150px}
+  .restart{flex:1 1 130px}
+  .progressbar{height:8px;margin-top:10px}
+  .done{font-size:1.1rem}
+  .support-title{font-size:.95rem;margin-bottom:6px}
+  .support-card{
+    padding:9px 10px;
+    margin:7px 0;
+    border-radius:13px;
+  }
+  .support-card h3{font-size:.9rem}
+  .use{font-size:.72rem;margin-bottom:5px}
+  .form-row{
+    grid-template-columns:20px 1fr;
+    font-size:.75rem;
+    margin:4px 0;
+    gap:4px;
+  }
+  .example{font-size:.69rem}
+  .help-es{font-size:.74rem;padding:9px;margin-top:8px}
+}
+@media(max-width:390px){
+  .brand h1{font-size:1.4rem}
+  .brand p{font-size:.82rem}
+  .badge{display:none}
+  .prompt-card{min-height:225px;padding:38px 15px 18px}
+  .prompt{font-size:1.5rem}
+  .actions{gap:7px}
+  .actions button{font-size:.86rem;padding:11px 10px}
+  .support-card p{margin:4px 0}
+}
+@media(orientation:landscape) and (max-height:520px){
+  .wrap{padding:8px}
+  .header{margin-bottom:7px}
+  .brand p,.badge{display:none}
+  .game{grid-template-columns:1.1fr .9fr;gap:8px}
+  .playzone,.support{padding:9px}
+  .support{max-height:calc(100vh - 70px);overflow:auto}
+  .prompt-card{min-height:210px}
+  .prompt{font-size:1.7rem}
+  .actions{position:static;background:none;padding:0}
+}
+
+.support-toggle{
+  display:none;
+  width:100%;
+  margin:0 0 8px;
+  border:1px solid var(--line);
+  background:#f4efff;
+  color:var(--purple);
+  border-radius:12px;
+  padding:9px 10px;
+  font-size:.8rem;
+  font-weight:900;
+}
+@media(max-width:620px){
+  .support-toggle{display:block}
+  #futureSupport.collapsed .support-card,
+  #futureSupport.collapsed .help-es{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="header">
+<div class="brand">
+<h1>Future Speaking Challenge 🎤</h1>
+<p>Speak naturally. One card at a time. No writing.</p>
+</div>
+<div class="badge">30 speaking cards</div>
+</div>
+<div class="game">
+<section class="playzone">
+<div class="counter">
+<span id="count">1 / 30</span>
+<span id="remain">29 remaining</span>
+</div>
+<div class="card-stage">
+<div class="prompt-card" id="promptCard">
+<div class="card-label">YOUR TURN</div>
+<div class="prompt" id="prompt">Say one thing you are going to do this weekend.</div>
+</div>
+</div>
+<div class="actions">
+<button class="next" id="nextBtn" onclick="nextCard()">Next card →</button>
+<button class="restart" onclick="restart()">New order ↻</button>
+</div>
+<div class="progressbar"><span id="progress"></span></div>
+<div class="done" id="done"></div>
+</section>
+<aside class="support" id="futureSupport">
+<div class="support-title">Quick Future Support</div><button aria-expanded="true" class="support-toggle" onclick="toggleSupport()" type="button">Hide support</button>
+<div class="support-card">
+<h3>WILL</h3>
+<div class="use">Prediction · spontaneous decision · offer · promise</div>
+<div class="form-row"><div class="sign">+</div><div><b>subject + will + verb</b><div class="example">I think it will rain.</div></div></div>
+<div class="form-row"><div class="sign">−</div><div><b>subject + won’t + verb</b><div class="example">I won’t stay home.</div></div></div>
+<div class="form-row"><div class="sign">?</div><div><b>Will + subject + verb?</b><div class="example">Will you help me?</div></div></div>
+</div>
+<div class="support-card">
+<h3>GOING TO</h3>
+<div class="use">Plan · intention · prediction with evidence now</div>
+<div class="form-row"><div class="sign">+</div><div><b>subject + am/is/are going to + verb</b><div class="example">I’m going to travel.</div></div></div>
+<div class="form-row"><div class="sign">−</div><div><b>subject + am/is/are not going to + verb</b><div class="example">I’m not going to drive.</div></div></div>
+<div class="form-row"><div class="sign">?</div><div><b>Am/Is/Are + subject + going to + verb?</b><div class="example">Are you going to travel?</div></div></div>
+</div>
+<div class="support-card">
+<h3>PRESENT CONTINUOUS</h3>
+<div class="use">Confirmed future arrangement</div>
+<div class="form-row"><div class="sign">+</div><div><b>subject + am/is/are + verb-ing</b><div class="example">I’m meeting Ana tomorrow.</div></div></div>
+<div class="form-row"><div class="sign">−</div><div><b>subject + am/is/are not + verb-ing</b><div class="example">I’m not working tomorrow.</div></div></div>
+<div class="form-row"><div class="sign">?</div><div><b>Am/Is/Are + subject + verb-ing?</b><div class="example">Are you working tomorrow?</div></div></div>
+</div>
+<div class="help-es"><b>Apoyo:</b> Lee la tarjeta y responde en voz alta. Usa la forma de futuro que mejor corresponda al significado. Las tarjetas no se repiten hasta completar las 30.</div>
+</aside>
+</div>
+</div>
+<div class="confetti" id="confetti"></div>
+<script>
+const cards=["Say one thing you are going to do this weekend.", "Say one thing you are NOT going to do this weekend.", "Ask someone what they are going to do after class today.", "Say where you are going to travel on your next holiday.", "You have a free day tomorrow. Say one thing you are NOT going to do.", "Ask someone if they are going to travel during the next holidays.", "Say one thing you are doing tomorrow that is already arranged.", "You cancelled a plan with a friend for tomorrow. Say what you are NOT doing.", "Ask someone what they are doing after class today.", "Say one thing you are doing this weekend that is already arranged.", "One of your arrangements for next week was cancelled. Say what you are NOT doing.", "Ask someone what they are doing tomorrow evening.", "Say one thing you think will happen in your life in five years.", "Say one thing you think will NOT happen on your next holiday.", "Ask someone what they think will happen to tourism in Chile in the future.", "Make a prediction about the weather later today.", "Say one thing you think will NOT change in tourism in the next ten years.", "Ask someone what they think the weather will be like this weekend.", "Your friend says: “I’m really hungry.” Make an immediate decision.", "Your friend says: “I can’t carry all these bags.” Offer to help.", "A tourist looks lost. Offer to help.", "Your friend is worried about an exam. Make a promise to help.", "You forgot to send an important message. Make an immediate decision.", "You are at a restaurant. You suddenly decide what to order. Tell the server.", "Look at the dark clouds outside. Say what is going to happen.", "A tourist has no jacket and the temperature is dropping quickly. Say what is going to happen.", "Your friend has a suitcase, a passport and a taxi outside. Ask where they are going.", "Your friend has a ticket for a concert tomorrow. Ask who they are going with.", "Say one thing you are doing next week and one thing you are NOT doing. Both are already arranged.", "Ask someone about a future plan. Listen and ask one more question about it."];
+let order=[],pos=0;
+
+function shuffle(a){
+  const x=[...a];
+  for(let i=x.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [x[i],x[j]]=[x[j],x[i]];
+  }
+  return x;
+}
+
+function show(){
+  const prompt=document.getElementById('prompt');
+  const card=document.getElementById('promptCard');
+  card.style.animation='none';
+  void card.offsetWidth;
+  card.style.animation='pop .25s ease';
+  prompt.textContent=cards[order[pos]];
+  document.getElementById('count').textContent=(pos+1)+' / '+cards.length;
+  document.getElementById('remain').textContent=(cards.length-pos-1)+' remaining';
+  document.getElementById('progress').style.width=((pos+1)/cards.length*100)+'%';
+  document.getElementById('nextBtn').disabled=pos===cards.length-1;
+  document.getElementById('done').textContent=pos===cards.length-1?'Last card! 🎉':'';
+  if(pos===cards.length-1) celebrate();
+}
+
+function nextCard(){
+  if(pos<cards.length-1){pos++;show();}
+}
+
+function restart(){
+  order=shuffle([...Array(cards.length).keys()]);
+  pos=0;
+  document.getElementById('done').textContent='';
+  show();
+}
+
+function celebrate(){
+  const box=document.getElementById('confetti');
+  box.innerHTML='';
+  const colors=['#6c4ccf','#ff7ab6','#ffd75e','#55c59a'];
+  for(let i=0;i<45;i++){
+    const p=document.createElement('div');
+    p.className='piece';
+    p.style.left=Math.random()*100+'vw';
+    p.style.top=(-20-Math.random()*180)+'px';
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.animationDelay=(Math.random()*.35)+'s';
+    box.appendChild(p);
+  }
+  setTimeout(()=>box.innerHTML='',1800);
+}
+
+restart();
+</script>
+<script>
+function toggleSupport(){
+  const box=document.getElementById('futureSupport');
+  const btn=box.querySelector('.support-toggle');
+  const collapsed=box.classList.toggle('collapsed');
+  btn.textContent=collapsed?'Show support':'Hide support';
+  btn.setAttribute('aria-expanded',String(!collapsed));
+}
+</script></body>
+</html>
