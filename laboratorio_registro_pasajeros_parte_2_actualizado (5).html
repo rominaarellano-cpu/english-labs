@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Laboratorio | Registro de pasajeros - Parte 2</title>
+<style>
+:root{--navy:#14324b;--blue:#2274a5;--sky:#eaf6fb;--orange:#ed8b3a;--ink:#17212b;--muted:#667786;--line:#d7e0e7;--good:#177245;--bad:#b33a3a;--paper:#fff;--bg:#f3f7f9}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}.wrap{width:min(980px,calc(100% - 28px));margin:auto}.hero{background:linear-gradient(125deg,var(--navy),#1d587a);color:#fff;padding:40px 0 32px}.eyebrow{font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#9fe2ff;font-size:.78rem}.hero h1{font-size:clamp(2rem,6vw,3.7rem);line-height:1.02;margin:.35rem 0}.hero p{max-width:720px;margin:.7rem 0 0;font-size:1.08rem}.route{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}.route span{background:#ffffff18;border:1px solid #ffffff42;border-radius:999px;padding:7px 12px;font-weight:750}.topbar{position:sticky;top:0;z-index:10;background:#fffffff2;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}.topbar .wrap{display:flex;align-items:center;gap:10px;padding:10px 0}.progress{height:8px;background:#dfe8ed;border-radius:20px;flex:1;overflow:hidden}.progress>i{display:block;height:100%;width:0;background:var(--orange);transition:.25s}.topbar button,button{font:inherit}.mini{border:0;background:var(--navy);color:#fff;border-radius:8px;padding:7px 10px;cursor:pointer}main{padding:30px 0 70px}.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,4vw,30px);margin:0 0 20px;box-shadow:0 8px 25px #18364b0c}.step{display:inline-flex;align-items:center;gap:8px;color:var(--blue);font-weight:850;text-transform:uppercase;letter-spacing:.08em;font-size:.79rem}.step b{display:grid;place-items:center;background:var(--blue);color:#fff;width:27px;height:27px;border-radius:50%}h2{margin:.45rem 0 .3rem;font-size:clamp(1.55rem,4vw,2.15rem);line-height:1.12}h3{margin:1.2rem 0 .45rem}.sub{color:var(--muted);margin-top:0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.service{border:1px solid var(--line);border-top:5px solid var(--blue);border-radius:13px;padding:16px;background:#fff}.service h3{margin:0}.service ul{padding-left:20px;margin:.5rem 0}.callout{background:#fff7e9;border-left:5px solid var(--orange);padding:13px 15px;border-radius:8px;margin:16px 0}.field{margin:14px 0}.field label,.q-title{display:block;font-weight:750;margin-bottom:6px}input[type=text],textarea,select{width:100%;border:1px solid #aebcc6;border-radius:9px;padding:11px;font:inherit;background:#fff}textarea{min-height:88px;resize:vertical}.options{display:grid;gap:8px}.option{display:flex;align-items:flex-start;gap:9px;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff;cursor:pointer}.option:has(input:checked){border-color:var(--blue);background:var(--sky)}.option input{margin-top:5px}.check{border:0;border-radius:10px;background:var(--orange);color:#1e2227;font-weight:850;padding:11px 16px;cursor:pointer}.feedback{display:none;margin-top:10px;padding:10px 12px;border-radius:9px;font-weight:700}.feedback.good{display:block;color:var(--good);background:#e8f6ee}.feedback.bad{display:block;color:var(--bad);background:#fff0f0}.case{border:1px solid var(--line);border-radius:15px;padding:18px;margin:16px 0;background:#fcfdfe}.case-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.tag{background:var(--navy);color:#fff;border-radius:999px;padding:5px 10px;font-size:.78rem;font-weight:800}.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}.fact{background:var(--sky);padding:9px;border-radius:8px}.decision{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.decision label{border:1px solid var(--line);border-radius:9px;padding:9px;text-align:center;font-weight:750;cursor:pointer}.decision label:has(input:checked){background:var(--navy);color:#fff}.decision input{display:none}.resultbox{display:none;margin-top:16px}.resultbox.show{display:block}.score{font-size:2rem;font-weight:900;color:var(--navy)}.evidence{border:2px dashed #9cadb8}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.primary{border:0;border-radius:10px;background:var(--navy);color:#fff;font-weight:850;padding:12px 16px;cursor:pointer}.secondary{border:1px solid var(--navy);border-radius:10px;background:#fff;color:var(--navy);font-weight:850;padding:11px 16px;cursor:pointer}.small{font-size:.88rem;color:var(--muted)}.print-only{display:none}
+@media(max-width:650px){.grid,.facts{grid-template-columns:1fr}.decision{grid-template-columns:1fr}.topbar .small{display:none}.hero{padding-top:28px}.card{border-radius:13px}.route span{font-size:.85rem}}
+@media print{.hero,.topbar,.no-print,.check,.actions{display:none!important}body{background:#fff;font-size:11pt}.wrap{width:100%}main{padding:0}.card,.case{box-shadow:none;break-inside:avoid;border-color:#999}.print-only{display:block}.feedback{display:none!important}textarea{border:0;border-bottom:1px solid #888;border-radius:0}.service{break-inside:avoid}}
+/* Registro de incidentes */
+.incident{border:1px solid var(--line);border-left:6px solid var(--orange);border-radius:13px;padding:18px;margin:18px 0;background:#fcfdfe}.incident.documented{border-left-color:var(--blue)}.incident h3{margin:.25rem 0}.source-note{display:inline-block;border-radius:999px;padding:5px 10px;font-size:.76rem;font-weight:850;letter-spacing:.03em;background:var(--sky);color:var(--blue)}.source-note.simulated{background:#fff1e5;color:#a65117}.record{background:#f6f9fb;border:1px solid var(--line);border-radius:10px;padding:14px;margin:12px 0}.record p{margin:.35rem 0}.audit{display:grid;grid-template-columns:1fr 1fr;gap:12px}.audit .field:last-child{grid-column:1/-1}.reference{font-size:.82rem;color:var(--muted);margin-top:12px}.reference a{color:var(--blue)}
+@media(max-width:650px){.audit{grid-template-columns:1fr}.audit .field:last-child{grid-column:auto}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Técnicas de Despacho Aerocomercial</div>
+  <h1>Laboratorio: pasajeros con servicios médicos</h1>
+  <p>Analiza la solicitud, verifica requisitos, identifica restricciones y toma una decisión operacional fundada.</p>
+  <div class="route"><span>1 · IDENTIFICA</span><span>2 · VERIFICA</span><span>3 · DECIDE</span><span>4 · REGISTRA</span><span>5 · COMUNICA</span></div>
+</div></header>
+<nav class="topbar"><div class="wrap"><span class="small">Avance</span><div class="progress"><i id="bar"></i></div><button class="mini" onclick="saveWork()">Guardar</button></div></nav>
+<main class="wrap">
+<section class="card evidence">
+  <div class="step"><b>0</b> Evidencia</div><h2>Identificación</h2>
+  <div class="grid"><div class="field"><label for="student">Nombre(s)</label><input id="student" type="text" placeholder="Escribe tu nombre o los del equipo"></div><div class="field"><label for="section">Sección / grupo</label><input id="section" type="text" placeholder="Ej.: Grupo 3"></div></div>
+  <p class="small">Trabajen en equipos de máximo 3. Una persona lee, otra verifica y otra registra. Cambien los roles en cada caso.</p>
+</section>
+
+<section class="card" id="bank">
+  <div class="step"><b>1</b> Banco operacional</div><h2>Consulta antes de decidir</h2><p class="sub">No memorices datos aislados: busca la condición que controla cada decisión.</p>
+  <div class="grid">
+    <article class="service"><h3>STCR · Camilla</h3><ul><li>Solicitud: 48 h antes.</li><li>MEDIF obligatorio.</li><li>Acompañante calificado.</li><li>Máximo 1 por avión.</li><li>Sector posterior izquierdo.</li></ul></article>
+    <article class="service"><h3>Incubadora</h3><ul><li>Solicitud: 48 h antes.</li><li>MEDIF obligatorio.</li><li>Acompañante calificado.</li><li>Máximo 1; solo turista.</li><li>Ambulancias: coordina pasajero/representante.</li></ul></article>
+    <article class="service"><h3>MEDOXI · Cilindro</h3><ul><li>Lo provee la compañía.</li><li>Máximo 1; solo turista.</li><li>Sector posterior izquierdo.</li><li>Pasajero/acompañante lo administra.</li><li>Cilindro vacío propio: Carga.</li></ul></article>
+    <article class="service"><h3>POC · Concentrador</h3><ul><li>Equipo propio y autorizado.</li><li>MEDIF indica marca/modelo.</li><li>Reserva confirmada.</li><li>Batería: viaje total + 3 h.</li><li>Sin costo; no cuenta como equipaje de mano.</li></ul></article>
+  </div>
+  <div class="callout"><strong>Restricción crítica:</strong> no se confirman STCR y MEDOXI para pasajeros distintos en el mismo vuelo: utilizan el mismo sector.</div>
+</section>
+
+<section class="card" id="warmup">
+  <div class="step"><b>2</b> Control rápido</div><h2>¿Qué servicio corresponde?</h2><p class="sub">Marca una alternativa y comprueba. Completa las cuatro.</p>
+  <div id="quick"></div>
+</section>
+
+<section class="card" id="cases">
+  <div class="step"><b>3</b> Resolución de casos</div><h2>Decide como agente de counter</h2>
+  <div class="callout"><strong>Tres decisiones posibles:</strong> <em>Confirmar</em> cuando cumple; <em>No confirmar todavía</em> cuando falta un antecedente corregible; <em>No aceptar</em> cuando existe una incompatibilidad o incumplimiento que impide el servicio solicitado.</div>
+  <div id="caseList"></div>
+  <button class="check no-print" onclick="evaluateCases()">Revisar mis decisiones</button>
+  <div id="caseResult" class="resultbox"></div>
+</section>
+
+<section class="card" id="incidents">
+  <div class="step"><b>4</b> Auditoría de atención</div><h2>Registro de incidentes</h2>
+  <p>Revisa cada registro como supervisor/a. En todos hay antecedentes correctos y errores menos evidentes. Identifica qué se verificó bien, qué se pasó por alto y cómo debía gestionarse la atención.</p>
+  <div class="callout"><strong>Casos ficticios:</strong> fueron construidos exclusivamente para aplicar las reglas del banco operacional. No corresponden a pasajeros ni aerolíneas reales.</div>
+
+  <article class="incident">
+    <span class="source-note simulated">CASO FICTICIO · STCR</span>
+    <h3>Registro 1 · Confirmación aparentemente correcta</h3>
+    <div class="record">
+      <p>Teresa Molina viajará de Santiago a Punta Arenas. Debido a una intervención reciente, no puede permanecer sentada durante el vuelo y solicita transporte en camilla.</p>
+      <p>La solicitud fue ingresada 60 horas antes. La reserva contiene un MEDIF aprobado, viajará acompañada por una enfermera y la camilla fue declarada compatible con la aeronave. No existe otro pasajero STCR en el vuelo.</p>
+      <p>El agente confirma el servicio, mantiene para la enfermera el asiento de ventana que había seleccionado originalmente y le informa que ambas podrán embarcar junto con el resto de los pasajeros. Después de confirmar, otro agente advierte que ya existe un pasajero con MEDOXI confirmado en el mismo vuelo.</p>
+    </div>
+    <div class="audit">
+      <div class="field"><label for="i1correct">¿Qué verificó correctamente el agente?</label><textarea id="i1correct"></textarea></div>
+      <div class="field"><label for="i1error">¿Qué información crítica no consideró?</label><textarea id="i1error"></textarea></div>
+      <div class="field"><label for="i1confirm">¿Puede mantenerse la confirmación del STCR? Fundamenta.</label><textarea id="i1confirm"></textarea></div>
+      <div class="field"><label for="i1seat">¿Qué estuvo mal en la asignación del asiento de la enfermera?</label><textarea id="i1seat"></textarea></div>
+      <div class="field"><label for="i1boarding">¿Qué estuvo mal en la información entregada sobre el embarque?</label><textarea id="i1boarding"></textarea></div>
+      <div class="field"><label for="i1action">¿Cómo debía gestionar y cerrar la atención el agente?</label><textarea id="i1action"></textarea></div>
+    </div>
+  </article>
+
+  <article class="incident">
+    <span class="source-note simulated">CASO FICTICIO · INCUBADORA</span>
+    <h3>Registro 2 · Servicio confirmado, traslado incompleto</h3>
+    <div class="record">
+      <p>Un recién nacido viajará de Antofagasta a Santiago para continuar un tratamiento médico. La solicitud de incubadora fue realizada 72 horas antes. La reserva está en clase turista, se presentó el MEDIF, viajará una matrona, el equipo fue declarado compatible y no hay otra incubadora solicitada.</p>
+      <p>La madre pregunta cómo se realizará el traslado desde la clínica al aeropuerto de Antofagasta y desde el aeropuerto de Santiago hasta el hospital. El agente responde: “Como el servicio está confirmado, la aerolínea coordinará automáticamente las ambulancias en ambos aeropuertos”. Termina la atención sin preguntar si la familia ha realizado coordinaciones externas ni registrar información al respecto.</p>
+    </div>
+    <div class="audit">
+      <div class="field"><label for="i2confirm">¿El servicio aéreo cumple los requisitos para confirmarse?</label><textarea id="i2confirm"></textarea></div>
+      <div class="field"><label for="i2correct">¿Qué antecedentes fueron verificados correctamente?</label><textarea id="i2correct"></textarea></div>
+      <div class="field"><label for="i2error">¿Qué información entregó incorrectamente el agente?</label><textarea id="i2error"></textarea></div>
+      <div class="field"><label for="i2ambulance">¿Quién debe coordinar las ambulancias de origen y destino?</label><textarea id="i2ambulance"></textarea></div>
+      <div class="field"><label for="i2record">¿Qué información debía preguntar y dejar registrada?</label><textarea id="i2record"></textarea></div>
+      <div class="field"><label for="i2action">¿Cómo debía cerrar la atención?</label><textarea id="i2action"></textarea></div>
+    </div>
+  </article>
+
+  <article class="incident">
+    <span class="source-note simulated">CASO FICTICIO · MEDOXI</span>
+    <h3>Registro 3 · MEDIF aprobado, operación incompleta</h3>
+    <div class="record">
+      <p>Raúl Fernández solicita MEDOXI para un vuelo Santiago–Iquique. Lo hizo cuatro días antes y el MEDIF indica flujo y volumen. El documento señala que puede viajar sin acompañante. Está en clase turista, no existe otro MEDOXI ni STCR y el servicio fue pagado.</p>
+      <p>En el counter explica que tiene un temblor importante en las manos y que normalmente otra persona abre, ajusta y controla su oxígeno, pero viajará solo. También quiere conservar el asiento de salida de emergencia que compró y facturar su cilindro personal vacío dentro de una maleta.</p>
+      <p>El agente responde: “Su MEDIF dice que no necesita acompañante, así que no hay problema. Puede conservar su asiento y enviar el cilindro vacío en bodega”.</p>
+    </div>
+    <div class="audit">
+      <div class="field"><label for="i3correct">¿Qué requisitos sí están cumplidos?</label><textarea id="i3correct"></textarea></div>
+      <div class="field"><label for="i3change">¿Qué información nueva cambia la decisión operacional?</label><textarea id="i3change"></textarea></div>
+      <div class="field"><label for="i3admin">¿Quién debe ser capaz de administrar el oxígeno durante el vuelo?</label><textarea id="i3admin"></textarea></div>
+      <div class="field"><label for="i3boarding">¿Puede embarcar así el pasajero? Fundamenta.</label><textarea id="i3boarding"></textarea></div>
+      <div class="field"><label for="i3seat">¿Qué error existe en la asignación del asiento?</label><textarea id="i3seat"></textarea></div>
+      <div class="field"><label for="i3cylinder">¿Qué error existe respecto del cilindro personal vacío y cómo debe transportarse?</label><textarea id="i3cylinder"></textarea></div>
+      <div class="field"><label for="i3action">¿Qué debía hacer el agente antes de cerrar la atención?</label><textarea id="i3action"></textarea></div>
+    </div>
+  </article>
+
+  <article class="incident">
+    <span class="source-note simulated">CASO FICTICIO · POC</span>
+    <h3>Registro 4 · Diez minutos que cambian la decisión</h3>
+    <div class="record">
+      <p>Camila Rojas viajará con un POC desde Puerto Montt a Santiago y luego a La Serena. Solicitó el servicio 72 horas antes; está confirmado y el MEDIF contiene la marca y el modelo de un equipo autorizado.</p>
+      <p><strong>Itinerario:</strong> Puerto Montt–Santiago: 2 h 20 min · conexión: 1 h 10 min · Santiago–La Serena: 1 h 40 min.</p>
+      <p>Lleva dos baterías de cuatro horas cada una. El agente calcula: “El viaje dura aproximadamente cinco horas. Con las tres horas adicionales, sus ocho horas son suficientes”. Después registra el POC como segunda pieza de equipaje de mano e informa que deberá pagar el cargo correspondiente.</p>
+    </div>
+    <div class="audit">
+      <div class="field"><label for="i4total">Calcula la duración total del viaje, incluida la conexión.</label><textarea id="i4total"></textarea></div>
+      <div class="field"><label for="i4minimum">Calcula la autonomía mínima requerida.</label><textarea id="i4minimum"></textarea></div>
+      <div class="field"><label for="i4battery">¿Son suficientes las baterías? Fundamenta.</label><textarea id="i4battery"></textarea></div>
+      <div class="field"><label for="i4calcerror">¿Cuál fue el error en el cálculo o en la decisión del agente?</label><textarea id="i4calcerror"></textarea></div>
+      <div class="field"><label for="i4baggage">¿Cómo debe registrarse el POC respecto del equipaje de mano?</label><textarea id="i4baggage"></textarea></div>
+      <div class="field"><label for="i4charge">¿Corresponde cobrar por transportar el POC? Fundamenta.</label><textarea id="i4charge"></textarea></div>
+      <div class="field"><label for="i4action">¿Qué debe solicitar o resolver el agente antes de mantener la confirmación?</label><textarea id="i4action"></textarea></div>
+    </div>
+  </article>
+</section>
+
+<section class="card evidence" id="close">
+  <div class="step"><b>5</b> Cierre</div><h2>Registra tu aprendizaje</h2>
+  <div class="field"><label for="rule">La regla que más puede cambiar una decisión operacional es…</label><textarea id="rule"></textarea></div>
+  <div class="field"><label for="question">Una duda que todavía necesito aclarar es…</label><textarea id="question"></textarea></div>
+  <div class="print-only"><strong>Firma / validación docente:</strong> ____________________________________________</div>
+  <div class="actions no-print"><button class="primary" onclick="finish()">Finalizar y guardar evidencia</button><button class="secondary" onclick="window.print()">Imprimir / Guardar PDF</button><button class="secondary" onclick="resetLab()">Reiniciar</button></div>
+  <p id="saved" class="small"></p>
+</section>
+</main>
+<script>
+const STORAGE_KEY='lab-medical-pax-casos-v1';
+const quick=[
+ {q:'El pasajero no puede mantener una posición vertical durante el vuelo.',a:'STCR',o:['STCR','MEDOXI','POC']},
+ {q:'La compañía entrega cilindros de oxígeno terapéutico para usar a bordo.',a:'MEDOXI',o:['Incubadora','MEDOXI','POC']},
+ {q:'El pasajero lleva un dispositivo eléctrico que concentra el oxígeno del aire.',a:'POC',o:['STCR','MEDOXI','POC']},
+ {q:'Un neonato necesita un entorno controlado durante el vuelo.',a:'Incubadora',o:['Incubadora','STCR','POC']}
+];
+const cases=[
+ {title:'Caso A · Traslado horizontal',tag:'STCR',facts:['Solicitud: 72 h antes','MEDIF aprobado','Acompaña una enfermera','No hay otro STCR ni MEDOXI'],answer:'confirmar',why:'Cumple anticipación, MEDIF, acompañante calificado y disponibilidad/compatibilidad.'},
+ {title:'Caso B · Conflicto de sector',tag:'Compatibilidad',facts:['Ya existe un STCR confirmado','Otro pasajero solicita MEDOXI','Mismo vuelo','Ambos usarían el sector posterior izquierdo'],answer:'no-aceptar',why:'STCR y MEDOXI no pueden confirmarse simultáneamente para pasajeros distintos en el mismo vuelo.'},
+ {title:'Caso C · Incubadora urgente',tag:'Incubadora',facts:['Solicitud: 24 h antes','MEDIF presentado','Acompaña una matrona','Clase turista'],answer:'no-confirmar',why:'La solicitud no cumple las 48 horas de anticipación; requiere gestión y autorización antes de confirmarse.'},
+ {title:'Caso D · Administración de oxígeno',tag:'MEDOXI',facts:['Solicitud: 60 h antes','MEDIF aprobado','Pasajero viaja solo','No puede administrar el oxígeno'],answer:'no-confirmar',why:'Debe existir una persona capaz de administrar el oxígeno. Falta resolver quién realizará esa función.'},
+ {title:'Caso E · Autonomía del POC',tag:'POC',facts:['Vuelo 1: 2 h','Escala/conexión: 1 h','Vuelo 2: 2 h','Autonomía disponible: 7 h'],answer:'no-confirmar',why:'El viaje total es 5 h y debe agregar 3 h: necesita 8 h de autonomía; dispone de 7 h.'}
+];
+const quickEl=document.getElementById('quick');
+quick.forEach((x,i)=>{quickEl.insertAdjacentHTML('beforeend',`<div class="case"><div class="q-title">${i+1}. ${x.q}</div><div class="options">${x.o.map(o=>`<label class="option"><input type="radio" name="q${i}" value="${o}" class="progress-item"> ${o}</label>`).join('')}</div><button class="check no-print" onclick="checkQuick(${i})">Comprobar</button><div id="qf${i}" class="feedback"></div></div>`)});
+function checkQuick(i){const v=document.querySelector(`input[name=q${i}]:checked`);const f=document.getElementById('qf'+i);if(!v){f.className='feedback bad';f.textContent='Selecciona una alternativa.';return}const ok=v.value===quick[i].a;f.className='feedback '+(ok?'good':'bad');f.textContent=ok?'Correcto.':'Revisa el banco operacional.';updateProgress()}
+const list=document.getElementById('caseList');
+cases.forEach((c,i)=>list.insertAdjacentHTML('beforeend',`<article class="case"><div class="case-head"><h3>${c.title}</h3><span class="tag">${c.tag}</span></div><div class="facts">${c.facts.map(f=>`<div class="fact">${f}</div>`).join('')}</div><div class="q-title">Decisión operacional</div><div class="decision"><label><input type="radio" name="c${i}" value="confirmar" class="progress-item">Confirmar</label><label><input type="radio" name="c${i}" value="no-confirmar" class="progress-item">No confirmar todavía</label><label><input type="radio" name="c${i}" value="no-aceptar" class="progress-item">No aceptar</label></div><div class="field"><label for="why${i}">Fundamento: indica la regla concreta</label><textarea id="why${i}" placeholder="La decisión se basa en…"></textarea></div><div id="cf${i}" class="feedback"></div></article>`));
+function evaluateCases(){let score=0;cases.forEach((c,i)=>{const v=document.querySelector(`input[name=c${i}]:checked`);const f=document.getElementById('cf'+i);const ok=v&&v.value===c.answer;if(ok)score++;f.className='feedback '+(ok?'good':'bad');f.textContent=(ok?'Decisión correcta. ':'Revisa tu decisión. ')+c.why});const r=document.getElementById('caseResult');r.className='resultbox show';r.innerHTML=`<div class="score">${score}/5</div><strong>Decisiones correctas</strong><p>${score===5?'Puedes pasar al registro de incidentes.':'Corrige los casos y vuelve a revisar.'}</p>`;saveWork();updateProgress()}
+function data(){const d={};document.querySelectorAll('input[type=text],textarea').forEach(x=>d[x.id]=x.value);document.querySelectorAll('input[type=radio]:checked').forEach(x=>d[x.name]=x.value);document.querySelectorAll('input[type=checkbox]').forEach((x,i)=>d['check'+i]=x.checked);return d}
+function saveWork(){localStorage.setItem(STORAGE_KEY,JSON.stringify(data()));document.getElementById('saved').textContent='Avance guardado en este dispositivo: '+new Date().toLocaleTimeString();updateProgress()}
+function loadWork(){try{const d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');Object.entries(d).forEach(([k,v])=>{const byId=document.getElementById(k);if(byId)byId.value=v;const radio=document.querySelector(`input[name="${k}"][value="${v}"]`);if(radio)radio.checked=true;if(k.startsWith('check')){const i=+k.slice(5),cs=document.querySelectorAll('input[type=checkbox]');if(cs[i])cs[i].checked=v}})}catch(e){}updateProgress()}
+function updateProgress(){const items=[...document.querySelectorAll('.progress-item')];const groups=new Set([...document.querySelectorAll('input[type=radio]')].map(x=>x.name));let done=[...groups].filter(n=>document.querySelector(`input[name="${n}"]:checked`)).length+document.querySelectorAll('input[type=checkbox]:checked').length;const total=groups.size+document.querySelectorAll('input[type=checkbox]').length;document.getElementById('bar').style.width=Math.round(done/total*100)+'%'}
+function finish(){saveWork();if(!document.getElementById('student').value.trim()){alert('Escribe el nombre antes de finalizar.');return}document.getElementById('saved').textContent='Evidencia lista. Ahora usa “Imprimir / Guardar PDF” y entrégala según indique tu docente.'}
+function resetLab(){if(confirm('¿Quieres borrar todas tus respuestas?')){localStorage.removeItem(STORAGE_KEY);location.reload()}}
+document.addEventListener('change',updateProgress);document.addEventListener('input',()=>{clearTimeout(window.t);window.t=setTimeout(saveWork,700)});loadWork();
+</script>
+</body>
+</html>
