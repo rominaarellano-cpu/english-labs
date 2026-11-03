@@ -1,0 +1,768 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#102936"><title>Último llamado · RPG SCL</title><style>
+:root{--bg:#0b1d28;--panel:#122d3a;--line:#31505f;--text:#f5f2e9;--muted:#b0c3ca;--gold:#f5c56b;--green:#87d9b5}*{box-sizing:border-box}body{margin:0;color:var(--text);background:var(--bg);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible,canvas:focus-visible{outline:3px solid var(--gold);outline-offset:3px}button:disabled{cursor:default;opacity:.55}.hidden{display:none!important}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(39px,6vw,72px);line-height:1.04;letter-spacing:-.05em}h2{font-size:clamp(24px,3vw,34px);line-height:1.15;letter-spacing:-.02em}h3{font-size:18px}.tag{font-size:11px;letter-spacing:.14em;color:var(--gold);font-weight:800;text-transform:uppercase}.muted{color:var(--muted)}.shell{max-width:1440px;margin:auto}.topbar{display:flex;gap:18px;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:1px solid var(--line)}.brand{display:flex;gap:15px;align-items:center;font-size:13px;letter-spacing:.1em}.brand b{font-size:24px;color:var(--gold)}.topbar small{color:var(--muted);font-size:12px}.btn{border:1px solid #567282;background:#193b4a;color:var(--text);border-radius:8px;padding:12px 17px;font-weight:700;min-height:46px}.btn.primary{background:var(--gold);border-color:var(--gold);color:#192b32}.btn.flat{background:transparent}.intro{display:grid;grid-template-columns:1fr 1fr;gap:50px;padding:50px 40px 35px;align-items:center}.intro p{font-size:18px;color:var(--muted);max-width:570px}.intro h1 span{color:var(--gold)}.start-card{background:#eceadf;color:#1d3942;border-radius:14px;padding:25px;box-shadow:0 20px 55px #0004}.start-card p{color:#49626a;font-size:14px}.start-card label{display:block;font-size:13px;font-weight:800;margin:20px 0 7px}.start-card input{width:100%;border:1px solid #9daeb0;border-radius:7px;padding:12px;background:white;color:#17313e}.start-card .btn{width:100%;margin-top:12px}.boarding{display:flex;justify-content:space-between;border-bottom:1px dashed #94a5a5;padding-bottom:20px;margin-bottom:20px}.boarding b{font-size:46px;letter-spacing:-.04em}.boarding small{display:block;font-size:11px;letter-spacing:.1em}.intro-art{height:230px;width:100%;border-radius:10px;border:1px solid #416376;background:#355365;margin-bottom:20px}.intro-guide{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:20px 40px 40px}.intro-guide div{border-top:2px solid var(--line);padding-top:12px}.intro-guide b{display:block;color:var(--gold);font-size:13px}.intro-guide span{font-size:13px;color:var(--muted)}.gamebar{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:12px 22px;background:#143241;border-bottom:1px solid #44616d}.flight{font-size:14px}.flight b{font-size:20px;letter-spacing:.08em}.flight small{display:block;color:var(--muted);font-size:11px}.times{display:flex;gap:28px;font-size:12px}.times strong{display:block;font:800 23px ui-monospace,monospace;color:var(--gold)}.times small{color:var(--muted)}.play-layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:0}.world-panel{position:relative;border-right:1px solid var(--line);background:#25404c;min-width:0}.world-tools{display:flex;gap:8px;align-items:center;padding:10px 14px;background:#0b202a;justify-content:space-between}.zone{font-size:12px;font-weight:700;color:var(--green)}.world-tools button{font-size:12px;padding:8px 12px;min-height:36px}.world-frame{height:clamp(400px,64vh,680px);position:relative;overflow:hidden}.world-frame canvas{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair;image-rendering:auto}.toast{position:absolute;top:14px;left:50%;transform:translateX(-50%);max-width:85%;width:max-content;background:#0c2635ed;border:1px solid #617d88;border-radius:10px;padding:12px 18px;font-size:14px;text-align:center;pointer-events:none;box-shadow:0 6px 25px #0003;z-index:3}.travel-hint{position:absolute;bottom:13px;left:15px;background:#102c37e8;border-radius:7px;padding:8px 12px;color:#e1ecee;font-size:12px;pointer-events:none}.movement{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;gap:18px;background:#0e2632;min-height:100px}.dpad{display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:repeat(2,40px);gap:4px;touch-action:none}.dpad button{border:1px solid #527381;background:#244754;color:var(--text);border-radius:7px;font-size:19px;font-weight:800;touch-action:none;user-select:none}.dpad button:first-child{grid-column:2}.dpad button:nth-child(2){grid-column:1;grid-row:2}.dpad button:nth-child(3){grid-column:2;grid-row:2}.dpad button:nth-child(4){grid-column:3;grid-row:2}.talk{background:var(--gold);border:0;border-radius:9px;color:#172d36;padding:14px 20px;font-size:15px;font-weight:800;min-height:52px}.movement small{font-size:12px;color:var(--muted)}.side{padding:23px 20px;background:#0f2632}.side h2{font-size:21px;margin:10px 0}.objective{padding:17px;border:1px solid #476351;background:#193c3a;border-radius:10px;margin:20px 0}.objective p{font-size:14px;margin:9px 0 0;color:#d0e4db}.objective b{font-size:14px;color:var(--green)}.steps{list-style:none;padding:0;margin:18px 0 25px}.steps li{font-size:13px;color:#8faab5;padding:9px 0;display:flex;gap:10px;align-items:center}.steps i{font-style:normal;width:24px;height:24px;border:1px solid #41616e;border-radius:50%;display:grid;place-content:center;font-size:11px}.steps li.active{color:var(--gold)}.steps li.active i{background:var(--gold);color:#19323b;border-color:var(--gold)}.steps li.done{color:var(--green)}.side .btn{width:100%;text-align:left;margin-top:10px;font-size:14px}.status-row{font-size:12px;color:var(--muted);padding:14px 0;border-top:1px solid var(--line)}.status-row strong{color:var(--text)}.mobile-bag{display:none}.mobile-objective{display:none}.footer{padding:16px 25px;color:var(--muted);font-size:11px;border-top:1px solid var(--line)}.footer button{border:0;background:none;color:var(--green);text-decoration:underline;font:inherit;cursor:pointer}dialog{border:1px solid #607e8c;border-radius:15px;background:#112c38;color:var(--text);padding:0;max-width:750px;width:calc(100% - 24px);max-height:88dvh;box-shadow:0 25px 100px #0006}dialog::backdrop{background:#00101bb5}.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 23px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#112c38;z-index:2}.dialog-head h2{font-size:22px;margin:0}.close{width:38px;height:38px;background:#224655;border:1px solid #4f6e7d;border-radius:50%;color:white;font-size:20px}.dialog-body{padding:24px;overflow-wrap:anywhere}.person-row{display:flex;gap:17px;align-items:center;margin-bottom:16px}.portrait{width:64px;height:72px;background:#244b59;border-radius:12px;flex:none;image-rendering:pixelated}.person-row small{display:block;color:var(--green);font-size:12px}.person-row b{font-size:21px}.npc-line{font-size:20px;color:#f8deb0;line-height:1.4;margin:20px 0}.context{font-size:14px;color:#c0d3dc}.clue{font-size:13px;background:#1a3e4a;border-left:3px solid #79bdc1;padding:13px 15px;margin:18px 0;color:#d0e3e8}.choices{display:grid;gap:10px}.choice{border:1px solid #4a6979;background:#1b3b4c;color:var(--text);padding:14px 17px;border-radius:8px;text-align:left;line-height:1.5;font-size:15px}.choice:hover:not(:disabled){border-color:var(--gold);background:#284d5a}.choice.selected{border:2px solid var(--gold);padding:13px 16px}.feedback{padding:18px;background:#204a43;border:1px solid #508875;border-radius:9px;margin-top:17px}.feedback.warn{background:#493c27;border-color:#897247}.feedback p{font-size:15px;margin-bottom:14px}.feedback small{display:block;color:#d3dacd;margin-bottom:16px}.item-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.item{border:1px solid #4b6c7b;background:#183846;color:var(--text);border-radius:10px;padding:16px;text-align:left;font-size:14px;position:relative}.item.selected{background:#2e5656;border:2px solid var(--gold);padding:15px}.item b{display:block;margin:8px 0 4px}.item small{font-size:12px;color:var(--muted);display:block;line-height:1.5}.item-icon{font-size:29px}.item .badge{position:absolute;right:10px;top:10px;font-size:10px;border:1px solid #67878c;border-radius:10px;padding:3px 7px;color:var(--green)}.item-desc{background:#1d3e4d;padding:17px;border-radius:10px;margin-top:16px;font-size:14px}.inventory-help{font-size:13px;color:var(--muted)}.doc-checklist{display:grid;gap:9px;margin:15px 0}.doc-checklist label{display:flex;gap:12px;align-items:flex-start;border:1px solid #4a6979;padding:13px;border-radius:8px;font-size:14px}.doc-checklist label:has(input:checked){border-color:var(--gold);background:#24464d}.doc-checklist input{width:20px;height:20px;flex:none;accent-color:var(--gold);margin-top:2px}.result{max-width:980px;margin:auto;padding:40px 24px 60px}.result h1{font-size:clamp(31px,5vw,53px)}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:25px 0}.summary>div{background:#193644;border:1px solid #3a5e6e;padding:22px;border-radius:10px}.summary b{display:block;font-size:31px;color:var(--gold)}.summary small{font-size:12px;color:var(--muted)}.log{padding:20px 0;border-bottom:1px solid var(--line);break-inside:avoid}.log h3{margin-bottom:8px}.log p{font-size:14px;color:#c8dbe2;margin:7px 0}.reflection{padding:22px;background:#173340;border-radius:10px;margin:25px 0}.reflection label{display:block;font-size:14px;margin:18px 0 8px}.reflection textarea{width:100%;min-height:90px;padding:12px;background:#092430;color:white;border:1px solid #527583;border-radius:7px;resize:vertical}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.print-answer{display:none;white-space:pre-wrap}.results-note{font-size:12px;color:var(--muted)}.board-table{width:100%;border-collapse:collapse;font-family:ui-monospace,monospace;font-size:14px}.board-table td,.board-table th{padding:12px 8px;border-bottom:1px solid #3c5665;text-align:left}.board-table th{color:var(--gold);font-size:11px}.board-table .current{color:var(--green)}.smallnote{font-size:12px;color:var(--muted);margin-top:15px}.arrival-banner{font-size:12px;color:var(--green)}@media(max-width:1000px){.play-layout{grid-template-columns:minmax(0,1fr) 250px}.side{padding:18px 14px}.times{gap:15px}.intro{gap:30px}}@media(max-width:760px){.intro{grid-template-columns:1fr;padding:30px 20px}.intro-art{height:180px}.intro-guide{grid-template-columns:1fr 1fr;padding:5px 20px 30px}.topbar{padding:13px 16px}.topbar small{display:none}.brand{font-size:11px;gap:10px}.brand b{font-size:20px}.play-layout{grid-template-columns:1fr}.side{display:none}.world-panel{border-right:0}.world-frame{height:clamp(280px,47dvh,510px)}.mobile-objective{display:block;background:#163e3a;padding:9px 15px;font-size:13px;color:#d2ebdf;border-bottom:1px solid #487062}.mobile-objective b{color:var(--green)}.gamebar{padding:9px 14px;gap:10px}.flight b{font-size:16px}.times strong{font-size:19px}.times small{font-size:10px}.times{gap:14px}.times .departure{display:none}.world-tools{padding:8px 12px}.mobile-bag{display:inline-block}.movement{padding:9px 13px;min-height:92px}.movement small{display:none}.dpad{grid-template-columns:repeat(3,43px);grid-template-rows:repeat(2,37px)}.talk{padding:13px;font-size:14px}.travel-hint{font-size:10px;max-width:75%;padding:6px 9px}.dialog-head{padding:15px 18px}.dialog-body{padding:19px}.npc-line{font-size:18px}.item-grid{grid-template-columns:1fr 1fr}.summary{gap:8px}.summary>div{padding:15px}.summary b{font-size:25px}.result{padding:30px 17px}.actions button{flex:1}.toast{font-size:12px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}@media print{@page{size:A4;margin:16mm}body{background:white;color:#16323e;font-size:10pt}.topbar,#intro,#playing,dialog,.footer,.no-print{display:none!important}.result{display:block;padding:0}.result.hidden{display:none!important}.result h1{font-size:26pt}.summary>div,.reflection{background:white;border:1px solid #acbdc3}.summary b,.tag{color:#846019}.muted,.log p,.results-note,.summary small{color:#294a59}.log{border-color:#aebfc5}.reflection label,.reflection textarea{display:none}.print-answer{display:block}.log h3{break-after:avoid}.summary,.reflection{break-inside:avoid}}
+/* Phone layout: one viewport for the terminal, one scroll area per dialog. */
+html{max-width:100%;overflow-x:hidden}body{max-width:100%;-webkit-text-size-adjust:100%}button,a,input,textarea{touch-action:manipulation}button{-webkit-tap-highlight-color:transparent}dialog[open]{display:flex;flex-direction:column;overflow:hidden}.dialog-head{flex:none}.dialog-body{overflow-y:auto;overscroll-behavior:contain;min-height:0;-webkit-overflow-scrolling:touch}.dialog-head .close{flex:none;width:44px;height:44px}.map-zoom{position:absolute;right:10px;top:10px;display:grid;gap:6px;z-index:4}.map-zoom button{width:44px;height:44px;border:1px solid #66848e;border-radius:9px;background:#102d3bed;color:#f7db9e;font-size:25px;font-weight:700;box-shadow:0 2px 10px #0002}.world-tools>div{display:flex;gap:6px}.world-tools .destinations-short{display:none}.world-tools .zone{min-width:0}.world-frame{isolation:isolate}.start-card,.intro>div,.play-layout>*{min-width:0}body.modal-open{overflow:hidden}.toast{right:66px;left:12px;transform:none;max-width:none;width:auto}.item-grid .item{overflow-wrap:anywhere}.item .badge{max-width:calc(100% - 65px)}
+@media screen and (max-width:760px),screen and (max-height:500px){
+ body.is-playing{height:var(--app-height,100dvh);overflow:hidden;overscroll-behavior:none}
+ body.is-playing>.topbar{height:39px;min-height:39px;padding:7px 13px}
+ body.is-playing>.topbar .brand{font-size:10px;gap:8px}
+ body.is-playing>.topbar .brand b{font-size:19px}
+ body.is-playing>.topbar small{display:none}
+ body.is-playing #playing{height:calc(var(--app-height,100dvh) - 39px);max-width:none;display:flex;flex-direction:column;overflow:hidden}
+ body.is-playing>.footer{display:none}
+ .play-layout{display:flex;flex:1;min-height:0;overflow:hidden}.world-panel{display:flex;flex-direction:column;flex:1;min-height:0;border:0}.side{display:none}
+ .world-frame{flex:1;min-height:100px;height:auto}.world-frame canvas{height:100%;width:100%;outline-offset:-3px}
+ .gamebar{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;flex:none;padding:8px 11px;min-height:59px}
+ .flight{min-width:0}.flight b{font-size:15px;white-space:nowrap}.flight small{font-size:9px;white-space:nowrap}.times{gap:10px;justify-content:center;min-width:0}.times strong{font-size:19px}.times small{font-size:9px;white-space:nowrap}.times .departure{display:none}
+ #inventory-top{font-size:12px!important;padding:8px 9px!important;min-height:44px}
+ .mobile-objective{display:block;flex:none;padding:9px 13px;min-height:48px;max-height:68px;overflow:hidden;font-size:13px;line-height:1.4;background:#163e3a;border-bottom:1px solid #487062}
+ .mobile-objective b{color:var(--green)}
+ .world-tools{flex:none;min-height:48px;padding:4px 9px;gap:6px}
+ .world-tools .zone{font-size:10px;max-width:115px;line-height:1.3}
+ .world-tools button{font-size:12px;min-height:44px;padding:8px 10px}
+ .world-tools .destinations-short{display:inline-block}
+ .movement{flex:none;min-height:118px;padding:8px 13px calc(8px + env(safe-area-inset-bottom,0px));gap:14px;align-items:center}
+ .movement small{display:none}.dpad{grid-template-columns:repeat(3,48px);grid-template-rows:repeat(2,48px);gap:4px;flex:none}.dpad button{font-size:23px;min-width:48px;min-height:48px;user-select:none;-webkit-user-select:none}
+ .talk{flex:1;min-height:64px;padding:12px 9px;font-size:15px;line-height:1.3;max-width:190px;overflow-wrap:anywhere;touch-action:manipulation}
+ .travel-hint{left:9px;bottom:9px;font-size:10px;max-width:calc(100% - 20px);padding:6px 8px}
+ .toast{font-size:13px;line-height:1.4;top:10px;right:64px;left:9px;padding:10px 12px}
+ dialog{width:100%;max-width:none;height:var(--app-height,100dvh);max-height:var(--app-height,100dvh);margin:0;inset:0;border:0;border-radius:0}
+ .dialog-head{padding:calc(10px + env(safe-area-inset-top,0px)) 15px 10px;min-height:65px;gap:12px}.dialog-head h2{font-size:20px;line-height:1.25}.dialog-body{padding:19px 17px calc(26px + env(safe-area-inset-bottom,0px));scrollbar-gutter:stable}
+ .person-row{gap:13px}.person-row b{font-size:20px}.person-row small{font-size:12px}.portrait{width:52px;height:59px}.npc-line{font-size:19px;line-height:1.4;margin:17px 0}.context{font-size:16px;line-height:1.6}.clue{font-size:14px;line-height:1.55;margin:16px 0}
+ .choice{font-size:16px;line-height:1.5;padding:15px;min-height:54px}.choice.selected{padding:14px}.choices{gap:12px}.feedback{padding:18px 15px}.feedback p{font-size:16px;line-height:1.55}.feedback .btn,.dialog-body>.btn{min-height:50px;width:100%;margin-top:8px}
+ .doc-checklist{gap:12px}.doc-checklist label{font-size:16px;line-height:1.5;padding:14px;gap:13px}.doc-checklist input{width:24px;height:24px;margin-top:2px}.doc-checklist input:focus-visible{outline:2px solid var(--gold)}
+ .item-grid{grid-template-columns:1fr;gap:14px}.item{padding:18px}.item.selected{padding:17px}.item b{font-size:17px}.item small{font-size:14px;line-height:1.55}.inventory-help,.smallnote{font-size:14px;line-height:1.55}.item-desc{font-size:16px}
+ .board-table{font-size:12px;width:100%;table-layout:auto}.board-table td,.board-table th{padding:11px 5px;overflow-wrap:normal}.board-table th{font-size:10px}
+ .intro{grid-template-columns:1fr;padding:28px 18px;gap:26px}.intro h1{font-size:43px}.intro p{font-size:17px}.intro-art{height:170px;object-fit:cover}.start-card{padding:20px}.start-card input{font-size:16px;min-height:48px}.start-card p{font-size:14px}.intro-guide{grid-template-columns:1fr 1fr;padding:0 18px 27px;gap:18px}.intro-guide span{font-size:13px}
+ .summary{grid-template-columns:1fr 1fr;gap:10px}.summary>div:last-child{grid-column:1/-1}.summary>div{padding:16px}.summary small{font-size:13px}.summary b{font-size:28px}.result .actions{display:grid;grid-template-columns:1fr}.result .actions .btn{width:100%;min-height:50px}.result .reflection{padding:18px}.result textarea{font-size:16px;min-height:110px}.result .log p{font-size:15px;line-height:1.6}.result .log h3{font-size:18px}.result{padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))}
+}
+@media screen and (max-width:360px){.flight small{display:none}.gamebar{gap:6px;padding:6px 8px}.times{gap:8px}.times strong{font-size:18px}.times small{font-size:8px}.world-tools .zone{max-width:79px}.world-tools button{padding:7px 8px}.movement{gap:10px;padding-left:10px;padding-right:10px}.talk{font-size:14px}.intro h1{font-size:38px}}
+@media screen and (max-height:500px) and (min-width:600px){
+ body.is-playing>.topbar{display:none}body.is-playing #playing{height:var(--app-height,100dvh)}
+ .gamebar{min-height:45px;padding:3px 12px}.flight small{display:none}.times{justify-content:flex-end;gap:25px}.times div{display:flex;gap:8px;align-items:baseline}.times strong{font-size:18px}.times small{font-size:9px}.gamebar #inventory-top{min-height:38px}
+ .mobile-objective{min-height:33px;max-height:39px;padding:6px 14px;font-size:12px;white-space:nowrap;text-overflow:ellipsis}
+ .world-tools{min-height:38px;padding:2px 12px}.world-tools .zone{max-width:none;font-size:11px}.world-tools button{min-height:36px;padding:5px 12px}
+ .movement{position:absolute;bottom:0;left:0;right:0;z-index:5;background:transparent;min-height:0;padding:7px 12px calc(7px + env(safe-area-inset-bottom,0px));pointer-events:none;align-items:end}.movement>*{pointer-events:auto}.dpad{grid-template-columns:repeat(3,44px);grid-template-rows:repeat(2,42px);gap:4px}.dpad button{min-width:44px;min-height:42px;background:#173d4eea}.talk{flex:none;width:150px;min-height:54px;box-shadow:0 3px 12px #00182566}.travel-hint{display:none}.world-frame{min-height:140px}
+ .dialog-head{min-height:52px;padding:5px 15px}.dialog-head h2{font-size:19px}.dialog-body{padding:15px 22px 24px}.portrait{width:43px;height:49px}.person-row{margin-bottom:10px}.npc-line{font-size:18px}.item-grid{grid-template-columns:1fr 1fr}.intro{grid-template-columns:1fr 1fr;padding:24px;gap:30px}.intro h1{font-size:38px}
+}
+@media screen and (max-width:760px),screen and (max-height:500px){
+ body.is-playing>.topbar{height:calc(39px + env(safe-area-inset-top,0px));min-height:calc(39px + env(safe-area-inset-top,0px));padding-top:calc(7px + env(safe-area-inset-top,0px))}
+ body.is-playing #playing{height:calc(var(--app-height,100dvh) - 39px - env(safe-area-inset-top,0px))}
+ .dialog-head{padding-left:calc(15px + env(safe-area-inset-left,0px));padding-right:calc(15px + env(safe-area-inset-right,0px))}
+ .dialog-body{padding-left:calc(17px + env(safe-area-inset-left,0px));padding-right:calc(17px + env(safe-area-inset-right,0px))}
+}
+@media screen and (max-height:500px) and (min-width:600px){
+ body.is-playing #playing{height:var(--app-height,100dvh)}.gamebar{min-height:48px;padding-left:calc(12px + env(safe-area-inset-left,0px));padding-right:calc(12px + env(safe-area-inset-right,0px))}.gamebar #inventory-top{min-height:44px}
+ .world-tools{min-height:46px}.world-tools button{min-height:44px}
+ .dpad{grid-template-rows:repeat(2,44px)}.dpad button{min-height:44px}
+ .movement{padding-left:calc(12px + env(safe-area-inset-left,0px));padding-right:calc(12px + env(safe-area-inset-right,0px))}
+}
+
+</style></head><body><header class="topbar shell"><div class="brand"><b>SCL</b><span>ÚLTIMO LLAMADO · RPG</span></div><small>Unidad II · Técnicas de Despacho Aerocomercial</small></header>
+<section id="intro" class="shell"><div class="intro"><div><div class="tag">Santiago → Madrid · Una aventura aeroportuaria</div><h1>Esta vez,<br><span>recorre el aeropuerto.</span></h1><p>Eres Alex. Hoy viajas a Madrid por turismo. Tu misión es completar los controles, llegar a la puerta correcta y continuar tu recorrido en destino.</p><p>Comienza con un check-in habitual. Después tendrás que resolver el equipaje, seguir un cambio de puerta y organizar tu tiempo. Las decisiones tienen consecuencias; también verás qué coordina el personal durante el viaje.</p><div class="tag" style="margin-top:27px">Un personaje · Un viaje · Tus decisiones</div></div><div class="start-card"><canvas id="intro-art" class="intro-art" width="600" height="260" aria-label="Ilustración del terminal de la simulación"></canvas><div class="boarding"><div><b>SCL</b><small>SANTIAGO</small></div><div><b>MAD</b><small>MADRID</small></div></div><p><b>Tu expediente:</b> Alex Rojas, 26 años, nacionalidad chilena. Turismo por 12 días. Documentos y condiciones del caso disponibles en la mochila.</p><label for="name">Tu nombre para el informe</label><input id="name" maxlength="80" autocomplete="name" placeholder="Nombre y apellido"><button class="btn primary" id="start">Entrar al terminal</button><button class="btn flat hidden" id="resume" style="color:#24464f;border-color:#8fa7aa">Continuar partida</button><p id="intro-status" role="status" style="margin:12px 0 0"></p></div></div><div class="intro-guide"><div><b>01 · Moverte</b><span>Flechas o WASD. En celular, toca el suelo o usa la cruceta.</span></div><div><b>02 · Conversar</b><span>Acércate y pulsa E o «Hablar». También puedes tocar al personaje.</span></div><div><b>03 · Usar tu mochila</b><span>Consulta tu reserva, equipaje y asistencia cuando lo necesites.</span></div><div><b>04 · Completar el viaje</b><span>El reloj avanza con las decisiones, no mientras caminas o lees.</span></div></div></section>
+<section id="playing" class="shell hidden"><div class="gamebar"><div class="flight"><b>SCL ✈ MAD</b><small>SIM 201 · Vuelo ficticio</small></div><div class="times"><div><small id="clock-label">HORA SIMULADA</small><strong id="clock">08:00</strong></div><div><small>CIERRE</small><strong>09:45</strong></div><div class="departure"><small>SALIDA</small><strong>10:00</strong></div></div><button class="btn flat" id="inventory-top" style="padding:9px 12px;font-size:13px">Mochila</button></div><div class="mobile-objective" id="mobile-objective"></div><div class="play-layout"><main class="world-panel"><div class="world-tools"><span class="zone" id="zone">Santiago · Terminal internacional</span><div><button class="btn flat" id="map-btn">Mapa</button><button class="btn flat destinations-short" id="destinations-mobile">Destinos</button><button class="btn flat" id="help-btn">Ayuda</button></div></div><div class="world-frame" id="world-frame"><canvas id="world" tabindex="0" aria-label="Mapa interactivo del aeropuerto. Usa flechas o WASD para caminar, E para hablar con el personaje cercano. Puedes usar el modo de navegación accesible desde Ayuda."></canvas><div class="map-zoom" aria-label="Zoom del mapa"><button id="zoom-in" aria-label="Acercar mapa">+</button><button id="zoom-out" aria-label="Alejar mapa">−</button></div><div id="toast" class="toast hidden" role="status" aria-live="polite"></div><div class="travel-hint" id="travel-hint">Toca el suelo para caminar · ! indica tu siguiente conversación</div></div><div class="movement"><div class="dpad" aria-label="Controles de movimiento"><button data-move="up" aria-label="Caminar arriba">↑</button><button data-move="left" aria-label="Caminar izquierda">←</button><button data-move="down" aria-label="Caminar abajo">↓</button><button data-move="right" aria-label="Caminar derecha">→</button></div><small>Flechas / WASD: caminar<br>E: hablar · I: mochila · M: mapa</small><button class="talk" id="talk">Hablar · E</button></div></main><aside class="side"><div class="tag">Alex · Pasajero</div><h2 id="chapter">Check-in</h2><ul class="steps" id="steps"></ul><div class="objective"><b>Tu siguiente paso</b><p id="objective"></p></div><div class="status-row">Puerta de la tarjeta: <strong>C4</strong><br>Puerta actual: <strong id="current-gate">Consulta las pantallas</strong></div><div class="status-row">Embarque: <strong>09:20</strong><br>Tiempo para leer: <strong>sin límite</strong></div><button class="btn" id="inventory">Mochila y documentos</button><button class="btn" id="journal">Diario del viaje</button><button class="btn flat" id="restart">Volver al inicio</button></aside></div></section>
+<section id="results" class="result hidden"></section><footer class="footer shell">Aeropuerto inspirado en Santiago, con mapa esquemático y datos ficticios. Las revisiones y resoluciones pertenecen a la historia. <button id="sources">Fuentes y alcance</button></footer>
+<dialog id="modal"><header class="dialog-head"><h2 id="modal-title"></h2><button class="close" id="close" aria-label="Cerrar ventana">×</button></header><div class="dialog-body" id="modal-body"></div></dialog>
+<script>
+const NODES={
+  "docs": {
+    "title": "«Buenos días. ¿Me permite su pasaporte?»",
+    "story": {
+      "p": "Son las 08:00. Llegas al counter del SIM 201 a Madrid con Elena. Llevas tu pasaporte vigente y una reserva confirmada. Isabel te recibe y busca los datos del viaje.",
+      "a": "Son las 08:00. Llegas al counter del SIM 201 a Madrid con Elena. Tu pasaporte está vigente y las condiciones del viaje están acreditadas en este caso. Isabel te recibe y busca tu reserva."
+    },
+    "hint": "Viajas por turismo durante 12 días. Aquí comienza la atención de check-in.",
+    "choices": [
+      {
+        "p": "Saludo y entrego mi pasaporte a Isabel.",
+        "a": "Saludo y entrego mi pasaporte a Isabel.",
+        "pts": 0,
+        "mins": 6,
+        "feedback": "Isabel comprueba identidad, reserva y documentos. «Viajas a Madrid. Ahora vamos a registrar tu equipaje. ¿Cuántas maletas llevas para bodega?»",
+        "next": "bag",
+        "flag": null,
+        "competency": "criterio"
+      }
+    ],
+    "stage": 0,
+    "place": "Santiago · Counter",
+    "agency": "Aerolínea",
+    "scored": false
+  },
+  "bag": {
+    "stage": 0,
+    "place": "Counter · Equipaje",
+    "title": "Dos maletas, un solo beneficio",
+    "story": {
+      "p": "Isabel comprueba tu reserva: «Tienes incluida una maleta de bodega de hasta 23 kg. Estas son dos piezas: una de 14 kg y otra de 8 kg. Podemos registrar una segunda pieza con cargo, o puedes reorganizar el contenido en una sola que cumpla los límites». Hay un espacio habilitado al costado del counter.",
+      "a": "La reserva incluye una pieza de bodega de hasta 23 kg. Recibes dos maletas separadas de 14 kg y 8 kg. Debes explicar qué está incluido y qué falta resolver."
+    },
+    "hint": "En la compañía simulada, puedes comprar una segunda pieza o reunir el contenido en una sola pieza que cumpla sus límites.",
+    "choices": [
+      {
+        "p": "Prefiero pagar la segunda pieza y registrar ambas maletas.",
+        "a": "Prefiero pagar la segunda pieza y registrar ambas maletas.",
+        "pts": 2,
+        "mins": 6,
+        "feedback": "Isabel informa el cargo; lo aceptas y pagas el servicio simulado. Registra dos piezas y te entrega los comprobantes y la tarjeta de embarque. Conservas todo para el viaje.",
+        "next": "pdi",
+        "flag": null,
+        "competency": "criterio"
+      },
+      {
+        "p": "Pido usar el espacio lateral para reunir todo en una sola maleta que cumpla los límites.",
+        "a": "Pido usar el espacio lateral para reunir todo en una sola maleta que cumpla los límites.",
+        "pts": 2,
+        "mins": 12,
+        "feedback": "Reorganizas el equipaje fuera de la fila. Isabel vuelve a pesar y comprobar la pieza, que cumple los límites del caso. La registra y entrega tarjeta y comprobante. Esta opción también es válida y toma más tiempo.",
+        "next": "pdi",
+        "flag": null,
+        "competency": "criterio"
+      },
+      {
+        "p": "Pregunto si pueden aceptar ambas sin cargo porque juntas pesan 22 kg.",
+        "a": "Pregunto si pueden aceptar ambas sin cargo porque juntas pesan 22 kg.",
+        "pts": 0,
+        "mins": 10,
+        "feedback": "Isabel explica que la reserva incluye una pieza, no cualquier cantidad de maletas que sumen 23 kg. En el caso aceptas el servicio adicional y se registran las dos antes de seguir.",
+        "next": "pdi",
+        "flag": "equipaje",
+        "competency": "criterio"
+      }
+    ],
+    "agency": "Aerolínea"
+  },
+  "pdi": {
+    "title": "El control migratorio de salida",
+    "story": {
+      "p": "Sigues el recorrido habilitado hasta el control de la Policía de Investigaciones de Chile (PDI). El funcionario te pide tu pasaporte.",
+      "a": "Sigues el recorrido habilitado hasta el control de la Policía de Investigaciones de Chile (PDI). El funcionario te pide tu pasaporte."
+    },
+    "hint": "La aceptación de la aerolínea y el control migratorio son funciones distintas.",
+    "choices": [
+      {
+        "p": "Presento mi pasaporte y respondo las preguntas del funcionario.",
+        "a": "Presento mi pasaporte y respondo las preguntas del funcionario.",
+        "pts": 0,
+        "mins": 9,
+        "feedback": "La PDI comprueba el documento y realiza el control de salida. En este caso no hay diferencias y puedes continuar hacia seguridad. Conservas el pasaporte a mano.",
+        "next": "security",
+        "flag": null,
+        "competency": "criterio"
+      }
+    ],
+    "stage": 1,
+    "place": "Santiago · Control migratorio",
+    "agency": "Aerolínea",
+    "scored": false
+  },
+  "security": {
+    "stage": 1,
+    "place": "T2 · Seguridad aeroportuaria",
+    "title": "La mochila vuelve a la cinta",
+    "story": {
+      "p": "En el control de seguridad, el personal necesita revisar un objeto de tu mochila. Llevas una batería externa de 74 Wh, un teléfono y una bolsa de cables. Solicitan tu colaboración para identificar el objeto.",
+      "a": "El pasajero consulta por la revisión de su mochila. AVSEC, seguridad de la aviación civil, realiza la inspección. En Chile este control corresponde a la DGAC, Dirección General de Aeronáutica Civil."
+    },
+    "hint": "DGAC: Dirección General de Aeronáutica Civil. AVSEC: seguridad de la aviación civil. En este caso la batería cumple las condiciones de cabina; el personal decide cómo inspeccionarla.",
+    "choices": [
+      {
+        "p": "Identifico el objeto y sigo las instrucciones del personal para la inspección.",
+        "a": "Explico quién realiza la inspección y oriento al pasajero a colaborar con ese personal.",
+        "pts": 2,
+        "mins": 8,
+        "feedback": "La inspección la realiza personal autorizado. Identificar el objeto permite aplicar el control correspondiente.",
+        "next": "gate",
+        "flag": null,
+        "competency": "responsables"
+      },
+      {
+        "p": "Pregunto si puedo guardar la batería y retirarme mientras siguen inspeccionando la mochila.",
+        "a": "Pregunto si puedo guardar la batería y retirarme mientras siguen inspeccionando la mochila.",
+        "pts": 0,
+        "mins": 8,
+        "feedback": "El personal te pide permanecer disponible: la inspección aún no ha terminado. Te indica pasar al área contigua con tu mochila para identificar el objeto antes de continuar.",
+        "next": "avsecroom",
+        "flag": "seguridad",
+        "competency": "criterio"
+      },
+      {
+        "p": "Explico que la batería está permitida y doy por hecho que la inspección ya terminó.",
+        "a": "Explico que la batería está permitida y doy por hecho que la inspección ya terminó.",
+        "pts": 0,
+        "mins": 10,
+        "feedback": "Que el objeto esté permitido no significa que su inspección esté completa. El personal indica continuar en el área contigua y comprobarlo antes de retirarte.",
+        "next": "avsecroom",
+        "flag": "seguridad",
+        "competency": "criterio"
+      }
+    ],
+    "agency": "DGAC / AVSEC"
+  },
+  "avsecroom": {
+    "stage": 1,
+    "place": "AVSEC · Inspección adicional",
+    "title": "La revisión continúa",
+    "story": {
+      "p": "El personal separa la mochila para completar la inspección. Permaneces disponible para responder e identificar tus pertenencias. El vuelo todavía no ha cerrado.",
+      "a": "El control adicional sigue a cargo de AVSEC. Debes orientar sobre el tiempo disponible y el siguiente paso sin prometer que autorizarán el objeto."
+    },
+    "hint": "Una inspección adicional puede ser necesaria para resolver una imagen u objeto. No implica por sí sola una conducta delictiva.",
+    "choices": [
+      {
+        "p": "Colaboro con la inspección y recupero la mochila cuando el personal lo indica.",
+        "a": "Espero la resolución del personal autorizado y actualizo la orientación al pasajero.",
+        "pts": 1,
+        "mins": 10,
+        "feedback": "El objeto queda verificado y, en este caso, autorizado. Puedes continuar hacia la puerta.",
+        "next": "gate",
+        "flag": null,
+        "competency": "responsables"
+      },
+      {
+        "p": "Intento retirar la mochila antes de que termine la inspección.",
+        "a": "Retiro la mochila por mi cuenta para que el pasajero llegue al vuelo.",
+        "pts": 0,
+        "mins": 24,
+        "feedback": "No puedes dar por finalizado el control. La inspección se completa con una demora adicional en el escenario.",
+        "next": "gate",
+        "flag": null,
+        "competency": "responsables"
+      }
+    ],
+    "agency": "DGAC / AVSEC"
+  },
+  "gate": {
+    "stage": 2,
+    "place": "T2 · Pantallas de salidas",
+    "title": "La tarjeta dice C4. La pantalla dice C8.",
+    "story": {
+      "p": "Al salir de los controles miras la pantalla. Tu número de vuelo y destino aparecen con puerta C8. En la tarjeta impresa todavía figura C4. Un mensaje informa «Cambio de puerta».",
+      "a": "La operación informa cambio de C4 a C8. La pantalla ya muestra C8, pero las tarjetas impresas conservan C4 y hay pasajeros esperando allí."
+    },
+    "hint": "Compara número de vuelo y destino. La puerta puede cambiar después de imprimir la tarjeta.",
+    "choices": [
+      {
+        "p": "Confirmo el vuelo en la pantalla y me dirijo a C8 siguiendo las indicaciones.",
+        "a": "Coordino pantallas y anuncios, aviso a las áreas involucradas y oriento también a quienes esperan en C4.",
+        "pts": 2,
+        "mins": 7,
+        "feedback": "La información actualizada y coherente permite llegar a la puerta correcta. El cambio debe alcanzar también a quienes quedaron en la anterior.",
+        "next": "wait",
+        "flag": null,
+        "competency": "tiempo"
+      },
+      {
+        "p": "Voy a C4: lo impreso tiene que ser más confiable.",
+        "a": "Dejo que la pantalla informe por sí sola; las tarjetas no se pueden cambiar.",
+        "pts": 0,
+        "mins": 19,
+        "feedback": "En C4 ya no se embarca este vuelo. En la historia, un aviso posterior permite corregir el recorrido, con pérdida de tiempo.",
+        "next": "wait",
+        "flag": "puerta",
+        "competency": "tiempo"
+      },
+      {
+        "p": "Voy hacia C4 y pienso preguntar allí si el cambio también corresponde a mi vuelo.",
+        "a": "Anuncio C8 sin confirmar número de vuelo y destino.",
+        "pts": 0,
+        "mins": 16,
+        "feedback": "En C4 el personal confirma que el SIM 201 a Madrid sale por C8. Regresas hacia la puerta actualizada; comprobar el número en la pantalla habría evitado ese recorrido.",
+        "next": "wait",
+        "flag": "puerta",
+        "competency": "tiempo"
+      }
+    ],
+    "agency": "Aerolínea"
+  },
+  "wait": {
+    "stage": 2,
+    "place": "C8 · Sala de espera",
+    "title": "Una cafetería y tres horarios",
+    "story": {
+      "p": "Después de recorrer el terminal y esperar en C8, miras el reloj: son las {time}. El embarque está previsto para las 09:20, cierra a las 09:45 y el vuelo sale a las 10:00. La cafetería lejana exige 10 minutos de ida, unos 20 de atención y 10 de regreso. Todavía debes confirmar la asistencia de Elena.",
+      "a": "Un pasajero quiere ir a una cafetería a diez minutos de C8. Calcula veinte minutos de atención y diez para volver. Debes orientarlo usando el horario de cierre, no solo la salida."
+    },
+    "hint": "Consulta el reloj de la partida. Ir y volver a la cafetería requiere unos 40 minutos, sin margen para filas nuevas.",
+    "choices": [
+      {
+        "p": "Compro algo en el local cercano y regreso a C8 en cuatro minutos.",
+        "a": "Compro algo en el local cercano y regreso a C8 en cuatro minutos.",
+        "pts": 2,
+        "mins": 4,
+        "feedback": "Vuelves a la sala con margen para conversar sobre la asistencia y atender el llamado de tu grupo. Usaste el cierre de las 09:45 para organizarte.",
+        "next": "assistance",
+        "flag": null,
+        "competency": "criterio"
+      },
+      {
+        "p": "Voy a la cafetería lejana: el recorrido y la atención tomarían unos 40 minutos.",
+        "a": "Voy a la cafetería lejana: el recorrido y la atención tomarían unos 40 minutos.",
+        "pts": 0,
+        "mins": 40,
+        "feedback": "La visita consume 40 minutos del caso. Compara la nueva hora con el cierre de las 09:45: el resultado del viaje se determina con ese límite.",
+        "next": "assistance",
+        "flag": "horario",
+        "competency": "criterio"
+      },
+      {
+        "p": "Me quedo en C8 y voy a confirmar ahora el punto de espera para Elena.",
+        "a": "Me quedo en C8 y voy a confirmar ahora el punto de espera para Elena.",
+        "pts": 2,
+        "mins": 0,
+        "feedback": "Mantienes tiempo disponible y puedes consultar con el equipo de puerta la asistencia solicitada. No necesitas ir a la cafetería para continuar el viaje.",
+        "next": "assistance",
+        "flag": null,
+        "competency": "criterio"
+      }
+    ],
+    "agency": "Aerolínea"
+  },
+  "assistance": {
+    "stage": 2,
+    "place": "C8 · Coordinación de apoyos",
+    "title": "El embarque será por buses",
+    "story": {
+      "p": "Un anuncio confirma traslado al avión en buses. Viaja contigo una familiar que puede caminar dentro de la cabina, pero no subir escaleras. Su asistencia estaba solicitada. Pregunta cómo llegará al avión.",
+      "a": "El vuelo embarcará en posición remota. Una pasajera con asistencia solicitada no puede subir escaleras. Debes comprobar los medios y la coordinación, no solo señalarle el bus."
+    },
+    "hint": "WCHS significa Wheelchair Steps: no puede usar escaleras, pero puede llegar a su asiento dentro de la cabina.",
+    "choices": [
+      {
+        "p": "Informo en puerta la necesidad y confirmo dónde esperar y quién prestará la asistencia.",
+        "a": "Confirmo equipos, personal y traslado seguro; explico la secuencia y el punto de espera.",
+        "pts": 2,
+        "mins": 6,
+        "feedback": "La asistencia se coordina según la necesidad. No existe una regla de atender siempre al final.",
+        "next": "ready",
+        "flag": null,
+        "competency": "criterio"
+      },
+      {
+        "p": "Subimos al bus y vemos cómo resolver las escaleras cuando lleguemos al avión.",
+        "a": "Envío a la pasajera al bus sin confirmar el acceso al avión.",
+        "pts": 0,
+        "mins": 14,
+        "feedback": "El traslado debe contemplar también cómo subirá al avión. El equipo corrige la coordinación antes de continuar.",
+        "next": "ready",
+        "flag": "asistencia",
+        "competency": "criterio"
+      },
+      {
+        "p": "La dejamos esperando hasta que hayan embarcado todos, sin avisar.",
+        "a": "Aplico siempre «última en embarcar» sin revisar qué apoyo necesita.",
+        "pts": 0,
+        "mins": 14,
+        "feedback": "La secuencia depende del apoyo requerido y del procedimiento de la compañía. Esperar sin coordinación no resuelve la asistencia.",
+        "next": "ready",
+        "flag": "asistencia",
+        "competency": "criterio"
+      }
+    ],
+    "agency": "Aerolínea"
+  },
+  "reader": {
+    "stage": 3,
+    "place": "C8 · Control de embarque",
+    "title": "El lector hace bip, pero aparece rojo",
+    "story": {
+      "p": "Presentas tu tarjeta. Se oye un sonido, pero el lector muestra «No registrado». El agente te pide esperar a un costado para comprobar el vuelo y tu identidad.",
+      "a": "El lector emite sonido, pero muestra «No registrado». Tienes al pasajero frente a ti y el flujo de personas continúa."
+    },
+    "hint": "El sonido por sí solo no acredita un registro válido. El respaldo manual debe estar autorizado.",
+    "choices": [
+      {
+        "p": "Espero la comprobación antes de avanzar hacia el bus.",
+        "a": "Verifico identidad y vuelo y resuelvo el registro en el sistema o respaldo autorizado antes de permitir avanzar.",
+        "pts": 2,
+        "mins": 5,
+        "feedback": "El registro queda confirmado. Esto permite saber quién embarcó realmente y evitar diferencias al cierre.",
+        "next": "cabinbag",
+        "flag": null,
+        "competency": "criterio"
+      },
+      {
+        "p": "Sigo caminando porque escuché el bip.",
+        "a": "Permito avanzar: el sonido es suficiente y puedo arreglar el sistema después.",
+        "pts": 0,
+        "mins": 13,
+        "feedback": "Un sonido sin registro válido puede crear una diferencia. Se recupera la comprobación antes de completar el embarque.",
+        "next": "cabinbag",
+        "flag": "registro",
+        "competency": "criterio"
+      },
+      {
+        "p": "Me aparto para que avance la fila y espero sin asegurarme de que el agente terminó mi registro.",
+        "a": "Marco al pasajero a mano en una lista no autorizada para ganar tiempo.",
+        "pts": 0,
+        "mins": 12,
+        "feedback": "Esperar al costado permite atender a otras personas, pero todavía debes completar tu registro. Camila te vuelve a llamar, verifica los datos y confirma el ingreso antes de dejarte continuar.",
+        "next": "cabinbag",
+        "flag": "registro",
+        "competency": "criterio"
+      }
+    ],
+    "agency": "Aerolínea"
+  },
+  "cabinbag": {
+    "stage": 3,
+    "place": "C8 · Última revisión del equipaje",
+    "title": "La maleta de cabina debe bajar a bodega",
+    "story": {
+      "p": "Por espacio, el equipo necesita enviar tu maleta de cabina a bodega. Dentro guardaste la batería externa de 74 Wh, los medicamentos de uso durante el viaje y tu pasaporte.",
+      "a": "Debes recibir una maleta de cabina para enviarla a bodega. El pasajero informa que contiene una batería externa, medicamentos y su pasaporte."
+    },
+    "hint": "La compañía simulada exige llevar esa batería en el bolso de cabina bajo el asiento. Debe identificarse y registrarse la pieza enviada a bodega.",
+    "choices": [
+      {
+        "p": "Retiro batería, pasaporte y medicación; confirmo la etiqueta y dónde recuperaré la maleta.",
+        "a": "Pido retirar la batería y conservar documentos y medicación; etiqueto, registro y coordino la entrega de la maleta.",
+        "pts": 2,
+        "mins": 6,
+        "feedback": "Se conserva lo necesario durante el viaje y se cumple la condición de transporte de la batería. La etiqueta y la coordinación mantienen identificada la pieza.",
+        "next": "bus",
+        "flag": null,
+        "competency": "criterio"
+      },
+      {
+        "p": "La entrego cerrada: como ya pasó seguridad, puede ir todo a bodega.",
+        "a": "La recibo sin preguntar: ya fue inspeccionada por seguridad.",
+        "pts": 0,
+        "mins": 15,
+        "feedback": "La inspección previa no convierte en apto para bodega todo el contenido. Se detiene el envío, se retira la batería y se corrige la entrega.",
+        "next": "bus",
+        "flag": "bateria",
+        "competency": "criterio"
+      },
+      {
+        "p": "Retiro solo el pasaporte y dejo la batería para no demorar la fila.",
+        "a": "Etiqueto la pieza, pero omito comprobar el contenido que informó el pasajero.",
+        "pts": 0,
+        "mins": 14,
+        "feedback": "Falta resolver la batería antes de enviar la pieza. El proceso se corrige y deja una incidencia de seguridad en el informe de aprendizaje.",
+        "next": "bus",
+        "flag": "bateria",
+        "competency": "criterio"
+      }
+    ],
+    "agency": "Aerolínea"
+  },
+  "bus": {
+    "stage": 3,
+    "place": "Plataforma · Traslado al avión",
+    "title": "El bus llegó, pero falta una confirmación",
+    "story": {
+      "p": "El bus se detiene cerca del avión. El personal aún no habilita la bajada y otra persona propone caminar por su cuenta hacia las escaleras.",
+      "a": "El bus llegó a la posición. El personal responsable aún no confirma el descenso y falta comprobar el cierre del grupo trasladado."
+    },
+    "hint": "Las indicaciones y accesos de plataforma los maneja el personal autorizado.",
+    "choices": [
+      {
+        "p": "Espero la indicación y sigo el recorrido habilitado.",
+        "a": "Coordino con el personal responsable y compruebo que todos hayan llegado antes de dar el traslado por finalizado.",
+        "pts": 2,
+        "mins": 4,
+        "feedback": "La llegada del bus no demuestra por sí sola que todas las personas hayan llegado a la aeronave. Se mantiene el control del grupo.",
+        "next": "closure",
+        "flag": null,
+        "competency": "responsables"
+      },
+      {
+        "p": "Me acerco a bajar con quienes se levantaron, aunque todavía no escuché la indicación del personal.",
+        "a": "Doy por completado el traslado apenas sale el bus de la puerta.",
+        "pts": 0,
+        "mins": 12,
+        "feedback": "El recorrido debe mantenerse bajo control. El personal reorganiza el grupo y confirma su llegada antes de continuar.",
+        "next": "closure",
+        "flag": "plataforma",
+        "competency": "responsables"
+      }
+    ],
+    "agency": "Aerolínea"
+  },
+  "closure": {
+    "title": "Desde tu asiento, el cierre sigue pendiente",
+    "story": {
+      "p": "Ya estás en tu asiento. La jefa de cabina anuncia: «Estamos completando unas comprobaciones con el equipo en tierra. Les pedimos permanecer en sus asientos y atender las indicaciones de la tripulación». No te corresponde intervenir en los registros de otros pasajeros.",
+      "a": "Ya estás en tu asiento. La jefa de cabina anuncia: «Estamos completando unas comprobaciones con el equipo en tierra. Les pedimos permanecer en sus asientos y atender las indicaciones de la tripulación». No te corresponde intervenir en los registros de otros pasajeros."
+    },
+    "hint": "Elena está a bordo. Tú conservas la etiqueta de la maleta recibida en puerta y tus documentos.",
+    "choices": [
+      {
+        "p": "Permanezco en mi asiento y atiendo las indicaciones de la tripulación.",
+        "a": "Permanezco en mi asiento y atiendo las indicaciones de la tripulación.",
+        "pts": 0,
+        "mins": 6,
+        "feedback": "En la operación se detectó una diferencia entre el registro de una pasajera y su maleta. Puerta, Control y equipajes contrastaron los datos, confirmaron el resultado y actualizaron la información antes del cierre. Como pasajero, recibiste las indicaciones necesarias durante la espera.",
+        "next": "dispatch",
+        "flag": null,
+        "competency": "criterio"
+      }
+    ],
+    "stage": 3,
+    "place": "A bordo · Espera antes de la salida",
+    "agency": "Aerolínea",
+    "scored": false
+  },
+  "arrival": {
+    "stage": 4,
+    "place": "Destino · Recepción del vuelo",
+    "title": "La atención pasa a otro equipo",
+    "story": {
+      "p": "Tras el vuelo llegas a {city}. Tu familiar necesita asistencia para desembarcar. Tú llevas un comprobante de la maleta recibida en puerta y consultas dónde retirarla.",
+      "a": "Formas parte del equipo receptor en {city}. Debes recibir las novedades de cabina, confirmar la asistencia y orientar sobre el equipaje retirado en puerta."
+    },
+    "hint": "Esta escena evalúa recepción y orientación. No simula una autorización de ingreso migratorio en el país de destino.",
+    "choices": [
+      {
+        "p": "Confirmo con el personal la asistencia y el lugar de entrega antes de separarme del recorrido indicado.",
+        "a": "Confirmo personal y medios seguros, recibo novedades de cabina y verifico dónde se entrega la pieza antes de orientar.",
+        "pts": 2,
+        "mins": 0,
+        "feedback": "La información pasa al equipo receptor. El pasajero recibe asistencia y una indicación comprobada sobre su equipaje.",
+        "next": "entry",
+        "flag": null,
+        "competency": "responsables"
+      },
+      {
+        "p": "Me voy hacia cualquier cinta: todas las maletas deberían salir juntas.",
+        "a": "Indico una cinta sin verificarla y doy por lista la asistencia porque estaba solicitada.",
+        "pts": 0,
+        "mins": 0,
+        "feedback": "Una solicitud no confirma la disponibilidad del apoyo y una etiqueta no permite adivinar la entrega. Se deben comprobar ambos datos.",
+        "next": "entry",
+        "flag": "recepcion",
+        "competency": "responsables"
+      },
+      {
+        "p": "Voy directamente a una cinta sin consultar dónde se entrega la maleta que recibieron en puerta.",
+        "a": "Aseguro al pasajero que puede ingresar al país porque llegó en el vuelo.",
+        "pts": 0,
+        "mins": 0,
+        "feedback": "La entrega puede depender del tipo de pieza y del procedimiento. El equipo de llegada comprueba el punto de devolución y coordina el apoyo de Elena antes de orientarles.",
+        "next": "entry",
+        "flag": "ingreso",
+        "competency": "responsables"
+      }
+    ],
+    "agency": "Aerolínea"
+  },
+  "entrymad": {
+    "title": "«¿Cuál es el motivo y cuánto tiempo se queda?»",
+    "story": {
+      "p": "En el control de entrada a España, el funcionario te pregunta por tu estancia. Viajas por turismo durante 12 días. Tienes alojamiento y regreso confirmados, tal como figura en los documentos del viaje.",
+      "a": "En el control de entrada a España, el funcionario te pregunta por tu estancia. Viajas por turismo durante 12 días. Tienes alojamiento y regreso confirmados, tal como figura en los documentos del viaje."
+    },
+    "hint": "La recepción del vuelo no reemplaza el control de ingreso del país de destino.",
+    "choices": [
+      {
+        "p": "Respondo que viajo por turismo durante 12 días y presento los respaldos que me solicitan.",
+        "a": "Respondo que viajo por turismo durante 12 días y presento los respaldos que me solicitan.",
+        "pts": 0,
+        "mins": 0,
+        "feedback": "En este caso simulado la autoridad contrasta los antecedentes y autoriza el ingreso. Recibes orientación para continuar hacia la entrega de equipaje.",
+        "next": "finish",
+        "flag": null,
+        "competency": "criterio"
+      }
+    ],
+    "stage": 4,
+    "place": "Madrid · Control de entrada",
+    "agency": "Aerolínea",
+    "scored": false
+  },
+  "ready": {
+    "title": "El personal anuncia el inicio del embarque",
+    "story": {
+      "p": "Sofía informa por altavoz: «Pasajeros del vuelo SIM 201 a Madrid, iniciaremos el embarque por grupos. Tengan a mano su documento y tarjeta. El traslado se realizará en buses». Elena ya tiene coordinado su apoyo.",
+      "a": "Sofía informa por altavoz: «Pasajeros del vuelo SIM 201 a Madrid, iniciaremos el embarque por grupos. Tengan a mano su documento y tarjeta. El traslado se realizará en buses». Elena ya tiene coordinado su apoyo."
+    },
+    "hint": "Mientras esperabas, puerta compartió las novedades del vuelo con cabina y Operaciones. En el ejemplo, cabina confirmó que puede recibir pasajeros y Operaciones comunicó a puerta que puede iniciar.",
+    "choices": [
+      {
+        "p": "Espero el llamado de mi grupo con mi documento y mi tarjeta a mano.",
+        "a": "Espero el llamado de mi grupo con mi documento y mi tarjeta a mano.",
+        "pts": 0,
+        "mins": 0,
+        "feedback": "El equipo confirmó accesos, buses y apoyos antes del llamado. Sofía comunica que tu grupo puede acercarse al lector. El canal y el cargo que confirman el inicio dependen del procedimiento de la compañía.",
+        "next": "reader",
+        "flag": null,
+        "competency": "criterio"
+      }
+    ],
+    "stage": 2,
+    "place": "C8 · Inicio del embarque",
+    "agency": "Aerolínea",
+    "scored": false
+  },
+  "dispatch": {
+    "title": "«Embarque completado» no es todo el despacho",
+    "story": {
+      "p": "La jefa de cabina informa: «Hemos completado las comprobaciones del embarque. Continuaremos con los preparativos de salida. Sigan las indicaciones de seguridad».",
+      "a": "La jefa de cabina informa: «Hemos completado las comprobaciones del embarque. Continuaremos con los preparativos de salida. Sigan las indicaciones de seguridad»."
+    },
+    "hint": "Puerta entrega cantidades y registros finales. Los equipos en tierra confirman sus tareas. El Encargado de Operaciones de Vuelo (EOV), o despachador, y el comandante comparten la planificación previa y el despacho operacional. Ese trabajo comienza antes del embarque y se coordina en paralelo.",
+    "choices": [
+      {
+        "p": "Sigo las indicaciones de seguridad y me preparo para el vuelo.",
+        "a": "Sigo las indicaciones de seguridad y me preparo para el vuelo.",
+        "pts": 0,
+        "mins": 0,
+        "feedback": "La tripulación completa sus procedimientos a bordo. El comandante tiene el mando de la aeronave. El cierre de pasajeros que informa puerta aporta al despacho, pero no lo sustituye. En esta historia el vuelo continúa y, después del viaje, llegas a Madrid.",
+        "next": "arrival",
+        "flag": null,
+        "competency": "criterio"
+      }
+    ],
+    "stage": 3,
+    "place": "SIM 201 · Preparativos de salida",
+    "agency": "Aerolínea",
+    "scored": false
+  }
+};
+const $=id=>document.getElementById(id),KEY='scl_rpg_pasajero_v3',T=40;
+const esc=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clock=m=>String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+const ROOM_NODES=['docroom','pdiroom','avsecroom','entryroom'];
+let s=null,canvas=$('world'),ctx=canvas.getContext('2d'),cw=800,ch=500,dpr=1,viewScale=1,camera={x:0,y:0},path=[],autoActor=null,held=null,fastWalk=false,lastFrame=0,moveProgress=0,moveTo=null,modalType=null,toastTimer=null,frameHandle=null,mapCache=null,mapCacheKey='',lastDraw=0;
+const ACTORS={
+ counter:{map:'scl',x:7,y:17,name:'Isabel',role:'Agente de counter',color:'#3896a6',icon:'counter',ambient:'Si ya resolviste la aceptación, sigue las señales hacia los controles. Conserva tu documento de viaje a mano.'},
+ docdesk:{map:'scl',x:6,y:11,name:'Valentina',role:'Aclaración documental',color:'#3896a6',ambient:'Esta mesa se utiliza cuando falta aclarar un documento en counter.'},
+ pdi:{map:'scl',x:11,y:15,name:'Funcionario PDI',role:'Control migratorio de salida',color:'#355a83',ambient:'Presenta tu documento de viaje cuando te corresponda. El control de salida lo realiza la PDI.'},
+ pdiroom:{map:'scl',x:8,y:10,name:'Funcionaria PDI',role:'Verificación adicional',color:'#355a83',ambient:'Aquí se aclaran diferencias cuando el control lo requiere. Una revisión adicional no equivale por sí sola a una sanción.'},
+ security:{map:'scl',x:18,y:13,name:'Personal AVSEC',role:'Seguridad aeroportuaria · DGAC',color:'#526a85',ambient:'Sigue las instrucciones del personal para la inspección. Consulta si necesitas ayuda para identificar un objeto.'},
+ avsecroom:{map:'scl',x:16,y:19,name:'Personal AVSEC',role:'Inspección adicional',color:'#526a85',ambient:'La inspección continúa aquí cuando es necesario aclarar una imagen u objeto.'},
+ board:{map:'scl',x:25,y:11,name:'Pantalla de salidas',role:'Información de vuelos',color:'#d7b55d',icon:'screen',ambient:''},
+ gate:{map:'scl',x:29,y:10,name:'Sofía',role:'Atención en puerta C8',color:'#39998f',ambient:'Comprueba la puerta y los horarios en la pantalla. El embarque comienza a las 09:20 y cierra a las 09:45.'},
+ family:{map:'scl',x:30,y:8,name:'Elena',role:'Familiar con asistencia solicitada',color:'#bb718a',ambient:'Tengo asistencia solicitada porque no puedo subir escaleras. Puedo caminar dentro de la cabina.'},
+ reader:{map:'scl',x:32,y:7,name:'Camila',role:'Control de embarque · C8',color:'#39998f',ambient:'Te llamaré según tu grupo cuando corresponda. Necesitamos un registro válido para completar el embarque.'},
+ cabinbag:{map:'scl',x:35,y:8,name:'Andrés',role:'Equipaje recibido en puerta',color:'#3a8795',ambient:'Antes de entregar una maleta para bodega, comprueba qué objetos debes conservar en cabina.'},
+ bus:{map:'scl',x:35,y:3,name:'Personal de plataforma',role:'Traslado al avión',color:'#d39e46',ambient:'Espera las indicaciones del personal responsable para subir, bajar o desplazarte por la plataforma.'},
+ cafe:{map:'scl',x:25,y:5,name:'Cafetería',role:'Servicios de la sala',color:'#a27454',ambient:'El local lejano requiere unos diez minutos de ida, veinte de atención y diez de regreso. Antes de ir, compara ese tiempo con el cierre de tu vuelo.'},
+ wronggate:{map:'scl',x:25,y:3,name:'Puerta C4',role:'Información de puerta',color:'#68818d',ambient:'El vuelo SIM 201 ya no embarca aquí. Consulta su número y destino en las pantallas: la puerta actualizada es C8.'},
+ helper:{map:'scl',x:4,y:20,name:'Información',role:'Orientación del terminal',color:'#7d9f64',ambient:'Las señales te llevan de counter al control migratorio y luego a seguridad, en este mapa. Las puertas están al otro lado. Puedes tocar el suelo para caminar o pulsar M para ver el mapa completo.'},
+ crew:{map:'plane',x:7,y:5,name:'Jefa de cabina',role:'Coordinación antes del cierre',color:'#526caa',ambient:'Estamos coordinando las últimas confirmaciones con el equipo de puerta.'},
+ reception:{map:'mad',x:7,y:11,name:'Equipo de llegada',role:'Recepción del vuelo',color:'#39998f',ambient:'Podemos orientar sobre asistencia y entrega del equipaje. El control de ingreso corresponde a la autoridad del destino.'},
+ entry:{map:'mad',x:8,y:5,name:'Funcionario de frontera',role:'Control de entrada · España',color:'#486389',ambient:'Presenta tu documento y los respaldos cuando te los solicite el personal del control.'},
+ entryroom:{map:'mad',x:14,y:5,name:'Funcionaria de frontera',role:'Aclaración de antecedentes',color:'#486389',ambient:'Esta sala se utiliza para contrastar antecedentes cuando el control lo requiere.'}
+};
+const TARGET={docs:'counter',bag:'counter',docroom:'docdesk',pdi:'pdi',pdiroom:'pdiroom',security:'security',avsecroom:'avsecroom',gate:'board',wait:'gate',assistance:'family',reader:'reader',cabinbag:'cabinbag',bus:'bus',closure:'crew',dispatch:'crew',ready:'gate',arrival:'reception',entrymad:'entry',entryroom:'entryroom'};
+const OBJECTIVES={docs:'Acércate al counter y entrega tu pasaporte a Isabel.',bag:'Resuelve con Isabel las dos maletas de bodega.',docroom:'Lleva los documentos a la mesa de aclaración junto al counter.',pdi:'Acércate al funcionario de PDI con tu documento de viaje.',pdiroom:'Acude a la sala de verificación PDI para aclarar la diferencia.',security:'Continúa al control de seguridad AVSEC.',avsecroom:'Colabora con la inspección adicional en la sala AVSEC.',gate:'Consulta el vuelo SIM 201 en la pantalla de salidas.',wait:'Habla con Sofía en la sala C8 sobre los horarios de espera.',assistance:'Acércate a Elena para coordinar su asistencia.',reader:'Presenta tu tarjeta ante Camila, en el acceso de C8.',cabinbag:'Habla con Andrés antes de entregar tu maleta de cabina.',bus:'Completa el traslado con el personal de plataforma.',closure:'Ya en tu asiento, atiende las indicaciones de la tripulación.',dispatch:'Conoce cómo continúa el despacho del vuelo.',ready:'Espera el llamado de tu grupo en C8.',arrival:'En Madrid, habla con el equipo receptor sobre asistencia y equipaje.',entrymad:'Continúa al control de entrada y explica tu viaje.',entryroom:'Aclara los antecedentes en la sala de revisión.'};
+const LINES={docs:'«Buenos días. ¿Me permite su pasaporte? ¿Cuántas maletas lleva para bodega?»',bag:'«La reserva incluye una pieza. Aquí tenemos dos maletas separadas».',docroom:'«Vamos a contrastar el documento vigente y el respaldo que corresponde».',pdi:'«Su documento de viaje, por favor».',pdiroom:'«Necesitamos aclarar cuál es su documento vigente».',security:'«Necesitamos identificar un objeto de su mochila».',avsecroom:'«La inspección todavía no termina. Manténgase disponible, por favor».',gate:'SIM 201 · MADRID · CAMBIO DE PUERTA: C4 → C8',wait:'«Antes de ir a la cafetería, revisemos a qué hora debes estar de vuelta».',assistance:'«El avión está en posición remota. ¿Cómo voy a subir si no puedo usar escaleras?»',reader:'«La tarjeta sonó, pero el sistema muestra “No registrado”. Espera un momento».',cabinbag:'«Necesitamos enviar esta maleta a bodega. ¿Qué llevas dentro?»',bus:'«Espera la indicación para bajar. Aún estamos comprobando el grupo».',closure:'«Estamos completando unas comprobaciones con el equipo en tierra. Permanezcan en sus asientos, por favor».',dispatch:'«Continuamos con los preparativos de salida. Sigan las indicaciones de seguridad».',ready:'«SIM 201 a Madrid: comenzamos el embarque por grupos».',arrival:'«Vamos a confirmar la asistencia de Elena y dónde recuperarás tu maleta».',entrymad:'«¿Cuál es el motivo del viaje y cuánto tiempo se queda?»',entryroom:'«Necesitamos contrastar su explicación con estos antecedentes».'};
+const ITEMS=[
+{id:'passport',icon:'▣',title:'Pasaporte vigente',desc:'SIM-1042. Identidad de Alex Rojas. Vigente para la ruta y las fechas del caso.',badge:'DOCUMENTO'},
+{id:'support',icon:'▤',title:'Respaldo de estancia',desc:'Turismo por 12 días. Alojamiento y regreso confirmados. Los documentos y condiciones del viaje están acreditados en este caso simulado.',badge:'MADRID'},
+{id:'booking',icon:'▥',title:'Reserva del viaje',desc:'SIM 201, Santiago a Madrid. Embarque 09:20, cierre 09:45, salida 10:00. Al completar el counter recibirás la tarjeta. Puerta inicial C4; asiento 18A. Consulta las pantallas por cambios.',badge:'VUELO'},
+{id:'bags',icon:'▰',title:'Equipaje de bodega',desc:'Incluido: una pieza de hasta 23 kg. Traes dos piezas separadas: 14 kg y 8 kg. La segunda puede comprarse en esta historia.',badge:'2 PIEZAS'},
+{id:'battery',icon:'▯',title:'Batería y bolso de mano',desc:'Batería externa de 74 Wh, autorizada para cabina bajo las condiciones del caso. Va en tu maleta de cabina junto al pasaporte y la medicación que necesitas en el viaje.',badge:'CABINA'},
+{id:'help',icon:'♿',title:'Asistencia de Elena',desc:'WCHS (Wheelchair Steps): no puede usar escaleras, pero puede llegar a su asiento dentro de la cabina. La asistencia está solicitada; todavía deben confirmarse los medios.',badge:'APOYO'}
+];
+function targetActor(state=s){return ACTORS[TARGET[state.node]]}function passed(node){return s.log.some(l=>l.node===node)}function stage(){return NODES[s.node].stage+1}function save(){if(!s)return;try{localStorage.setItem(KEY,JSON.stringify(s));}catch{}}
+function loadSaved(){try{let v=JSON.parse(localStorage.getItem(KEY));return v&&v.version===3&&TARGET[v.node]&&v.pos&&['scl','plane','mad'].includes(v.map)&&Array.isArray(v.log)?v:null;}catch{return null;}}
+function start(){let name=$('name').value.trim();if(name.length<2){$('intro-status').textContent='Escribe tu nombre para identificar el informe.';$('name').focus();return;}s={version:3,name,node:'docs',map:'scl',pos:{x:4,y:21},time:480,log:[],pending:null,finished:false,outcome:null,started:new Date().toISOString(),reflection:['',''],order:{},walked:0,clearances:{}};path=[];moveTo=null;showGame();save();toast('Bienvenido/a a SCL. Busca a Isabel en counter.');}
+function showGame(){document.body.classList.add('is-playing');syncViewport();$('intro').classList.add('hidden');$('results').classList.add('hidden');$('playing').classList.remove('hidden');if(s.finished){result();return;}updateHUD();resize();if(!frameHandle)frameHandle=requestAnimationFrame(frame);if(s.pending){openConversation(TARGET[s.node]);}canvas.focus({preventScroll:true});}
+function backHome(){if(s&&!s.finished&&!confirm('¿Volver al inicio? Podrás continuar mientras no empieces una partida nueva.'))return;closeModal();document.body.classList.remove('is-playing');$('playing').classList.add('hidden');$('results').classList.add('hidden');$('intro').classList.remove('hidden');$('resume').classList.toggle('hidden',!loadSaved());held=null;path=[];window.scrollTo(0,0);}
+function updateHUD(){let labels=['Check-in','Controles','Puerta y espera','Embarque y cierre','Llegada'];$('steps').innerHTML=labels.map((t,i)=>`<li class="${i+1===stage()?'active':i+1<stage()?'done':''}"><i>${i+1}</i>${t}</li>`).join('');$('chapter').textContent=labels[stage()-1];$('objective').textContent=OBJECTIVES[s.node];$('mobile-objective').innerHTML='<b>Objetivo'+(passed('gate')?' · C8':'')+':</b> '+esc(OBJECTIVES[s.node]);$('clock').textContent=s.map==='mad'?'LLEGADA':clock(s.time);$('clock-label').textContent=s.map==='mad'?'DESPUÉS DEL VUELO':'HORA SIMULADA';$('current-gate').textContent=passed('gate')?'C8':'Consulta las pantallas';$('zone').textContent=s.map==='scl'?'Santiago · Terminal internacional':s.map==='plane'?'Vuelo SIM 201 · Cabina':'Madrid · Recepción y frontera';}
+function toast(message){clearTimeout(toastTimer);$('toast').textContent=message;$('toast').classList.remove('hidden');toastTimer=setTimeout(()=>$('toast').classList.add('hidden'),4500);}
+function dimensions(map=s?.map||'scl'){return map==='scl'?{w:38,h:24}:map==='plane'?{w:16,h:18}:{w:22,h:17};}
+const rects={scl:[[6,15,4,2],[23,4,5,1],[23,16,3,1],[27,16,3,1],[32,16,3,1],[23,19,3,1],[27,19,3,1],[32,19,3,1],[14,12,3,1]],plane:[],mad:[[3,8,3,1],[11,10,3,1],[16,10,3,1]]};
+function baseBlocked(x,y,map=s.map){let d=dimensions(map);if(x<1||y<1||x>=d.w-1||y>=d.h-1)return true;if(map==='scl'){if(x===12&&y!==16)return true;if(x===20&&y!==13)return true;if(y===6&&x>=31&&x<=36&&x!==33)return true;if(x===31&&y<6)return true;}if(map==='plane'){if(x<3||x>12)return true;if(y>=3&&y<=13&&x!==7&&x!==8)return true;}if(map==='mad'&&y===7&&x!==8)return true;for(let [rx,ry,rw,rh]of rects[map])if(x>=rx&&x<rx+rw&&y>=ry&&y<ry+rh)return true;return false;}
+function gateBlocked(x,y){if(s.map==='scl'){if(x===12&&y===16&&!s.clearances.pdi)return true;if(x===20&&y===13&&!s.clearances.security)return true;if(x===33&&y===6&&!s.clearances.boarding)return true;}if(s.map==='mad'&&y===7&&x===8&&!passed('entrymad')&&s.node!=='entryroom')return false;return false;}
+function actors(){return Object.entries(ACTORS).filter(([k,a])=>a.map===s.map&&!['docdesk','pdiroom','entryroom'].includes(k))}
+function actorAt(x,y){return actors().find(([k,a])=>a.x===x&&a.y===y)}
+function walkable(x,y){return !baseBlocked(x,y)&&!gateBlocked(x,y)&&!actorAt(x,y)}
+function findPath(from,to){if(!walkable(to.x,to.y))return null;let queue=[{x:Math.round(from.x),y:Math.round(from.y)}],seen=new Map([[queue[0].x+','+queue[0].y,null]]),end=null;for(let i=0;i<queue.length;i++){let p=queue[i];if(p.x===to.x&&p.y===to.y){end=p;break;}for(let [dx,dy]of[[0,1],[1,0],[-1,0],[0,-1]]){let q={x:p.x+dx,y:p.y+dy},key=q.x+','+q.y;if(!seen.has(key)&&walkable(q.x,q.y)){seen.set(key,p);queue.push(q);}}}if(!end)return null;let result=[];while(end){let prev=seen.get(end.x+','+end.y);if(prev)result.push(end);end=prev;}return result.reverse();}
+function walkTo(x,y,actor=null){if(modalType||s.finished)return;moveTo=null;s.pos.x=Math.round(s.pos.x);s.pos.y=Math.round(s.pos.y);let candidates=actor?[[0,1],[1,0],[-1,0],[0,-1]].map(([dx,dy])=>({x:x+dx,y:y+dy})).filter(q=>walkable(q.x,q.y)):[{x,y}];let paths=candidates.map(q=>findPath(s.pos,q)).filter(p=>p!==null).sort((a,b)=>a.length-b.length);if(!paths.length){toast('Todavía no hay un paso habilitado. Revisa tu objetivo y los controles pendientes.');return;}path=paths[0];autoActor=actor;if(path.length===0&&actor){autoActor=null;interact(actor);}}
+function nearestActor(){let best=null,dist=1.5;for(let [id,a]of actors()){let d=Math.hypot(a.x-s.pos.x,a.y-s.pos.y);if(d<dist){best=id;dist=d;}}return best;}
+function talk(){if(!s||s.finished||modalType)return;let id=nearestActor();if(id)interact(id);else toast('Acércate a un personaje o pantalla. Puedes tocarlo para caminar hasta allí.');}
+function interact(id){if(!s||s.finished)return;held=null;path=[];moveTo=null;if(id===TARGET[s.node]){if(['reader','ready'].includes(s.node))s.time=Math.max(560,s.time);if(s.node==='wait')s.time=Math.max(550,s.time);updateHUD();save();openConversation(id);}else if(id==='board'){showBoard();}else ambient(id);}
+function presentModal(title,body,type){syncViewport();document.body.classList.add('modal-open');modalType=type;held=null;path=[];autoActor=null;$('modal-title').textContent=title;$('modal-body').innerHTML=body;if(!$('modal').open)$('modal').showModal();$('modal-body').scrollTop=0;}
+function closeModal(){if($('modal').open)$('modal').close();document.body.classList.remove('modal-open');modalType=null;held=null;save();}
+function portrait(canvasEl,color){let c=canvasEl.getContext('2d');c.clearRect(0,0,64,72);c.fillStyle='#244652';c.fillRect(0,0,64,72);c.fillStyle='#e3b792';c.fillRect(22,13,22,26);c.fillStyle='#3e3439';c.fillRect(20,9,25,10);c.fillRect(20,16,5,8);c.fillStyle=color;c.fillRect(15,41,37,32);c.fillStyle='#122c3a';c.fillRect(15,63,37,9);c.fillStyle='#183441';c.fillRect(27,24,3,3);c.fillRect(38,24,3,3);c.fillStyle='#f4e6c7';c.fillRect(29,41,9,10);}
+function npcHeader(id){let a=ACTORS[id];return `<div class="person-row"><canvas class="portrait" id="portrait" width="64" height="72" aria-hidden="true"></canvas><div><small>${esc(a.role)}</small><b>${esc(a.name)}</b></div></div>`;}
+function ambient(id){let a=ACTORS[id];presentModal(a.name,npcHeader(id)+`<p class="npc-line">${esc(a.ambient)}</p><button class="btn primary" id="ambient-close">Seguir caminando</button>`,'ambient');portrait($('portrait'),a.color);$('ambient-close').onclick=closeModal;}
+function showBoard(){presentModal('Pantalla de salidas',`<table class="board-table"><tr><th>VUELO</th><th>DESTINO</th><th>HORA</th><th>PUERTA</th></tr><tr class="current"><td>SIM 201</td><td>MADRID</td><td>10:00</td><td>C8</td></tr><tr><td>SIM 115</td><td>LIMA</td><td>10:15</td><td>C6</td></tr><tr><td>SIM 340</td><td>BUENOS AIRES</td><td>10:30</td><td>C4</td></tr></table><p class="npc-line">SIM 201 · Cambio de C4 a C8</p><p class="context">Embarque 09:20 · Cierre 09:45 · Salida 10:00.</p><p class="smallnote">Información ficticia de la partida. Contrasta el número de vuelo con tu tarjeta.</p><button class="btn primary" id="board-close">Volver al recorrido</button>`,'board');$('board-close').onclick=closeModal;}
+function inventory(selected=null){let content=`<p class="inventory-help">Consulta tu reserva, documentos, equipaje y asistencia. En el counter entregas tu pasaporte; las decisiones se toman durante el recorrido.</p><div class="item-grid">`+ITEMS.map(it=>`<button class="item ${it.id===selected?'selected':''}" data-item="${it.id}"><span class="badge">${it.badge}</span><span class="item-icon" aria-hidden="true">${it.icon}</span><b>${it.title}</b><small>${it.desc}</small></button>`).join('')+'</div>';
+if(selected){let it=ITEMS.find(x=>x.id===selected);content+=`<div class="item-desc"><b>${it.title}</b><p>${it.desc}</p>${(s.node==='docs'||s.node==='docroom')&&nearestActor()===TARGET[s.node]?'<button class="btn primary" id="use-folder">Elegir documentos para presentar</button>':''}</div>`;}
+presentModal('Mochila de Alex',content,'inventory');$('modal-body').querySelectorAll('[data-item]').forEach(b=>b.onclick=()=>inventory(b.dataset.item));if($('use-folder'))$('use-folder').onclick=()=>openConversation(TARGET[s.node]);}
+function order(){if(!s.order[s.node]){let a=NODES[s.node].choices.map((_,i)=>i);for(let j=a.length-1;j>0;j--){let k=Math.floor(Math.random()*(j+1));[a[j],a[k]]=[a[k],a[j]];}s.order[s.node]=a;}return s.order[s.node];}
+function openConversation(id){let n=NODES[s.node];let documentMode=false;let cabinMode=s.node==='cabinbag'&&!s.pending;let body=npcHeader(id)+`<p class="npc-line">${esc(LINES[s.node])}</p><p class="context">${esc(n.story.p.replaceAll('{city}','Madrid').replaceAll('{time}',clock(s.pending?.timeBefore??s.time)))}</p>`;
+if(s.node==='gate')body+=`<table class="board-table"><tr><th>VUELO</th><th>DESTINO</th><th>SALIDA</th><th>PUERTA</th></tr><tr class="current"><td>SIM 201</td><td>MADRID</td><td>10:00</td><td>C8</td></tr></table>`;
+body+=`<div class="clue">${esc(n.hint.replaceAll('{city}','Madrid').replaceAll('«Mi expediente»','«Mochila»'))}</div>`;
+if(documentMode){body+='<p><b>Elige de tu mochila los documentos que vas a presentar.</b></p><div class="doc-checklist">'+ITEMS.filter(it=>['passport','old','support','booking'].includes(it.id)).map(it=>`<label><input type="checkbox" value="${it.id}" name="doc"><span><b>${it.title}</b><br>${esc(it.desc)}</span></label>`).join('')+'</div><button class="btn primary" id="present-docs">Presentar documentos</button><p class="smallnote" id="doc-status" role="status"></p>';}
+else if(cabinMode){body+='<p><b>Abre la maleta y elige qué conservarás contigo.</b></p><div class="doc-checklist">'+[['battery','Batería externa de 74 Wh','En este caso debe viajar en el bolso de cabina bajo el asiento.'],['passport','Pasaporte','Lo necesitarás durante el viaje y en el control de destino.'],['medicine','Medicación para el viaje','Necesitas disponer de ella durante el vuelo.']].map(([id,t,d])=>`<label><input type="checkbox" name="carry" value="${id}"><span><b>${t}</b><br>${d}</span></label>`).join('')+'</div><button class="btn primary" id="prepare-bag">Preparar la maleta para bodega</button>';}else{body+='<div class="choices">'+order().map(i=>`<button class="choice ${s.pending?.index===i?'selected':''}" data-choice="${i}" ${s.pending?'disabled':''}>${esc(n.choices[i].p.replaceAll('{city}','Madrid'))}</button>`).join('')+'</div>';}
+if(s.pending){body+=`<div class="feedback ${s.pending.pts===0&&n.scored!==false?'warn':''}" role="status"><p><b>${n.scored===false?'El viaje continúa':s.pending.pts===0?'Lo que ocurrió':s.pending.pts===1?'La situación se aclara':'La atención continúa'}</b></p><p>${esc(s.pending.feedback.replaceAll('{city}','Madrid'))}</p><small>${s.pending.mins?`Transcurrieron ${s.pending.mins} minutos de la historia.`:n.scored===false?'Escena del recorrido, sin puntaje.':'Se registra tu decisión.'}</small><button class="btn primary" id="next">${s.pending.next==='finish'?'Ver el resultado':'Volver al recorrido'}</button></div>`;}
+presentModal(ACTORS[id].name,body,'conversation');portrait($('portrait'),ACTORS[id].color);
+if(documentMode)$('present-docs').onclick=()=>{let docs=[...$('modal-body').querySelectorAll('input[name="doc"]:checked')].map(x=>x.value);if(!docs.length){$('doc-status').textContent='Selecciona al menos un documento.';return;}let i=docs.includes('old')?1:docs.includes('passport')&&docs.includes('support')?0:2;if(s.node==='docroom')i=docs.includes('passport')&&docs.includes('support')&&!docs.includes('old')?0:1;choose(i,docs.map(id=>ITEMS.find(it=>it.id===id).title).join(' + '));};
+if(cabinMode)$('prepare-bag').onclick=()=>{let items=[...$('modal-body').querySelectorAll('input[name="carry"]:checked')].map(e=>e.value);let good=items.length===3;let explain=good?null:!items.includes('battery')?'La batería no puede quedar dentro de esta pieza enviada a bodega. El equipo detiene la entrega y pide retirarla, junto con los documentos y medicación necesarios.':'Retiraste la batería, pero aún necesitas conservar tus documentos y la medicación del viaje. El equipo corrige la preparación antes de etiquetar y recibir la pieza.';choose(good?0:2,'Conservé en cabina: '+(items.length?items.join(', '):'ninguno de los objetos indicados'),explain);};$('modal-body').querySelectorAll('[data-choice]').forEach(b=>b.onclick=()=>choose(Number(b.dataset.choice)));if(s.pending){$('next').onclick=advance;$('next').focus({preventScroll:true});$('modal-body').querySelector('.feedback').scrollIntoView({block:'nearest'});}save();}
+function choose(index,documents=null,customFeedback=null){if(s.pending||s.finished)return;let n=NODES[s.node],original=n.choices[index];if(!original)return;let c={...original,feedback:customFeedback||original.feedback};let row={node:s.node,title:n.title,decision:documents?(s.node==='cabinbag'?documents:'Presenté: '+documents):c.p.replaceAll('{city}','Madrid'),feedback:c.feedback.replaceAll('{city}','Madrid'),pts:c.pts,max:n.scored===false?0:ROOM_NODES.includes(s.node)?1:2,mins:c.mins,timeBefore:s.time,timeAfter:s.time+c.mins,competency:c.competency};s.log.push(row);s.time+=c.mins;s.pending={...c,index,timeBefore:row.timeBefore};updateHUD();save();openConversation(TARGET[s.node]);}
+function advance(){if(!s.pending)return;let prev=s.node,c=s.pending,next=c.next;s.pending=null;closeModal();if(['pdi','pdiroom'].includes(prev)&&next==='security')s.clearances.pdi=true;if(['security','avsecroom'].includes(prev)&&next==='gate')s.clearances.security=true;if(prev==='cabinbag')s.clearances.boarding=true;if(next==='finish'){finish(c.finalStatus||'completed');return;}if(s.time>585&&NODES[prev].stage<4&&!['cabinbag','bus','closure','dispatch'].includes(prev)){finish('missed');return;}if(next==='entry')next='entrymad';s.node=next;path=[];moveTo=null;
+if(next==='closure'){s.map='plane';s.pos={x:7,y:14};toast('Traslado completado. Ya estás en la cabina del SIM 201.');}
+else if(next==='arrival'){s.map='mad';s.pos={x:7,y:14};toast('Después del vuelo · Bienvenido/a a Madrid.');}
+else if(next==='gate'){toast('Atención: SIM 201 a Madrid cambia de puerta. Consulta la pantalla.');}
+else if(ROOM_NODES.includes(next)){toast('Debes aclarar una incidencia. El objetivo indica la sala correspondiente.');}
+else toast(OBJECTIVES[next]);save();updateHUD();canvas.focus({preventScroll:true});}
+function summary(){let points=s.log.reduce((a,l)=>a+l.pts,0),max=s.log.reduce((a,l)=>a+l.max,0);return {points,max,percent:max?Math.round(points/max*100):0,incidents:s.log.filter(l=>l.max>0&&l.pts===0).length};}
+function finish(outcome){s.finished=true;s.outcome=outcome;s.ended=new Date().toISOString();closeModal();save();result();}
+function result(){document.body.classList.remove('is-playing','modal-open');let st=summary(),late=s.outcome==='missed',pending=s.outcome==='entry_pending';$('playing').classList.add('hidden');$('intro').classList.add('hidden');$('results').classList.remove('hidden');let title=late?'La puerta cerró antes de que completaras el embarque.':pending?'Llegaste a Madrid. El control sigue pendiente.':st.incidents?'Completaste el viaje, con incidencias que resolver.':'Llegaste a Madrid. La posta funcionó.';
+let desc=late?'Las demoras acumuladas superaron el cierre simulado de las 09:45. La compañía debe orientar sobre alternativas; no se promete una reapertura.':pending?'La aclaración de antecedentes quedó sin resolver. Debes esperar la decisión de la autoridad competente.':'El resultado recoge tus primeras decisiones, las correcciones y sus consecuencias. Llegar al final no convierte una decisión inicial incorrecta en correcta.';
+$('results').innerHTML=`<div class="tag">Informe del viaje · RPG SCL → MAD</div><h1>${title}</h1><p>${desc}</p><p class="muted">${esc(s.name)} · Personaje: Alex Rojas · ${new Date(s.started).toLocaleDateString('es-CL')}</p><div class="summary"><div><b>${st.percent}%</b><small>Logro en las decisiones realizadas</small></div><div><b>${st.incidents}</b><small>Decisiones con incidencia</small></div><div><b>${clock(s.time)}</b><small>Última hora simulada en Santiago</small></div></div><p class="results-note">${st.points}/${st.max} puntos formativos · ${s.log.length} escenas registradas · ${s.walked} tramos caminados. ${late?'Recorrido incompleto: el porcentaje no equivale a completar la actividad.':''} No se convierte automáticamente en nota. El tiempo del vuelo no se suma al reloj.</p><div class="reflection"><h2>Tu explicación del viaje</h2><label for="reflect0">¿Qué dato concreto cambió una de tus decisiones?</label><textarea id="reflect0"></textarea><p class="print-answer" id="print0"></p><label for="reflect1">¿Qué le explicarías a otro pasajero para evitar una de estas incidencias?</label><textarea id="reflect1"></textarea><p class="print-answer" id="print1"></p></div><div class="actions no-print"><button class="btn primary" id="pdf">Guardar informe en PDF</button><button class="btn" id="json">Descargar registro</button><button class="btn flat" id="again">Volver al inicio</button></div><p class="results-note no-print">En la ventana de impresión elige «Guardar como PDF». El juego guarda la partida en este navegador cuando está disponible. No envía los resultados al aula ni a la docente.</p><h2>Diario del viaje</h2>`+s.log.map((l,i)=>`<article class="log"><div class="tag">${i+1} · ${NODES[l.node].stage===4?'DESPUÉS DEL VUELO':clock(l.timeBefore)} · ${l.max?l.pts+'/'+l.max:'Escena sin puntaje'}</div><h3>${esc(l.title)}</h3><p><b>Elegiste:</b> ${esc(l.decision)}</p><p><b>Consecuencia:</b> ${esc(l.feedback)}</p></article>`).join('');
+for(let i=0;i<2;i++){$('reflect'+i).value=s.reflection[i]||'';$('print'+i).textContent=s.reflection[i]||'Sin respuesta';$('reflect'+i).oninput=()=>{s.reflection[i]=$('reflect'+i).value;$('print'+i).textContent=s.reflection[i]||'Sin respuesta';save();};}$('pdf').onclick=()=>window.print();$('json').onclick=()=>{let blob=new Blob([JSON.stringify({activity:'Último llamado RPG SCL',...s,summary:st},null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Ultimo_Llamado_RPG_registro.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);};$('again').onclick=backHome;window.scrollTo(0,0);}
+function diary(){presentModal('Diario del viaje',s.log.length?s.log.map((l,i)=>`<article class="log"><div class="tag">${i+1} · ${l.max?l.pts+'/'+l.max:'Escena sin puntaje'}</div><b>${esc(l.title)}</b><p>${esc(l.decision)}</p><p>${esc(l.feedback)}</p></article>`).join(''):'<p>Todavía no has tomado decisiones. Habla con Isabel en counter.</p>','diary');}
+function help(){presentModal('Cómo recorrer el aeropuerto',`<p><b>Computador:</b> flechas o WASD para caminar, E o Espacio para hablar, I para la mochila y M para el mapa.</p><p><b>Celular:</b> toca el suelo para caminar. Toca un personaje para acercarte y conversar, o utiliza la cruceta y «Hablar».</p><p>El símbolo <b>!</b> marca tu siguiente conversación. Los controles pendientes mantienen cerrados los pasos correspondientes. El reloj solo avanza con las decisiones.</p><p>Puedes consultar la mochila, el mapa y el diario sin perder tiempo. Si cierras una conversación, acércate al mismo personaje para retomarla.</p><button class="btn primary" id="accessible">Navegación accesible por destinos</button><p class="smallnote">Permite seleccionar un destino del mapa y caminar automáticamente hasta él. No salta controles.</p><button class="btn flat" id="diary-help">Abrir diario del viaje</button><button class="btn flat" id="home-help">Volver al inicio</button>`,'help');$('accessible').onclick=accessible;$('diary-help').onclick=diary;$('home-help').onclick=backHome;}
+function accessible(){presentModal('Destinos del mapa',`<p class="context">Selecciona un destino. Alex caminará si el recorrido está habilitado.</p><div class="choices">`+actors().map(([id,a])=>`<button class="choice" data-go="${id}">${a.name} · ${a.role}${id===TARGET[s.node]?' · Tu objetivo':''}</button>`).join('')+'</div>','accessible');$('modal-body').querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{let id=b.dataset.go,a=ACTORS[id];closeModal();fastWalk=true;walkTo(a.x,a.y,id);});}
+function sources(){presentModal('Fuentes y alcance',`<p>El recorrido sigue las cinco etapas de la infografía «Embarque y recepción»: check-in, controles, puerta, embarque y llegada. Juegas siempre como pasajero; las coordinaciones internas se explican en escenas sin puntaje.</p><ul><li><a href="https://www.dgac.gob.cl/wp-content/uploads/2023/04/DAN-121_ED3_ENM4_03ABR2023-1.pdf" target="_blank" rel="noopener">DGAC: DAN 121, responsabilidad de despacho del comandante y EOV</a></li><li><a href="https://www.nuevopudahuel.cl/sites/default/files/t2/infografia-es.pdf" target="_blank" rel="noopener">Nuevo Pudahuel: Terminal Internacional</a></li><li><a href="https://www.pdichile.cl/instituci%C3%B3n/unidades/migraciones" target="_blank" rel="noopener">PDI: control migratorio</a></li><li><a href="https://www.dgac.gob.cl/pasajeros/seguridad-en-aeropuertos/" target="_blank" rel="noopener">DGAC: seguridad aeroportuaria</a></li><li><a href="https://www.latamtrade.com/es_un/comunicados/EQUIPAJE_Restriccion_sobre_el_transporte_y_uso_de_baterias_o_cargadores_portatiles_power_banks_a_bordo_SP" target="_blank" rel="noopener">Baterías externas y equipaje</a></li><li><a href="https://www.interior.gob.es/opencms/es/servicios-al-ciudadano/tramites-y-gestiones/extranjeria/regimen-general/entrada-requisitos-y-condiciones" target="_blank" rel="noopener">España: comprobación de las condiciones de entrada</a></li></ul><p>Referencia consultada el 3 de noviembre de 2026. Personajes, mapa, tiempos, puertas, vuelos y resoluciones son ficticios. Las verificaciones secundarias no reproducen un procedimiento policial ni implican culpabilidad. No se pretende representar todas las exigencias legales de un viaje real.</p><p>EOV: Encargado de Operaciones de Vuelo. WCHS: Wheelchair Steps. AVSEC: Aviation Security. DGAC: Dirección General de Aeronáutica Civil. PDI: Policía de Investigaciones de Chile.</p>`,'sources');}
+function rounded(c,x,y,w,h,r,color){c.fillStyle=color;c.beginPath();c.roundRect(x,y,w,h,r);c.fill();}
+function label(c,text,x,y,size=13,color='#2e505d',align='left'){c.font=`700 ${size}px system-ui`;c.fillStyle=color;c.textAlign=align;c.fillText(text,x,y);c.textAlign='left';}
+function sign(c,text,x,y,w=145){rounded(c,x,y,w,29,5,'#173849');label(c,text,x+10,y+20,11,'#f5d085');}
+function desk(c,x,y,w=3){rounded(c,x*T,y*T,w*T,2*T,6,'#77959e');rounded(c,x*T+3,y*T+3,w*T-6,31,4,'#c0c9c8');for(let i=0;i<w;i++){rounded(c,(x+i)*T+9,y*T+10,22,14,2,'#233f50');c.fillStyle='#a3c8bc';c.fillRect((x+i)*T+11,y*T+12,18,8);}}
+function seats(c,x,y,count=3){for(let i=0;i<count;i++){let px=(x+i)*T+3,py=y*T+4;rounded(c,px+3,py+4,28,26,5,'#667c8c');rounded(c,px+3,py,28,10,4,'#365b74');c.fillStyle='#2e4454';c.fillRect(px,py+6,4,22);c.fillRect(px+31,py+6,4,22);}}
+function plant(c,x,y){c.fillStyle='#8d8170';c.beginPath();c.ellipse(x,y+5,12,8,0,0,Math.PI*2);c.fill();c.fillStyle='#47826e';for(let a=0;a<5;a++){c.beginPath();c.ellipse(x+Math.cos(a*1.3)*7,y-6+Math.sin(a*1.3)*6,8,12,a,0,Math.PI*2);c.fill();}}
+function sprite(c,x,y,color,player=false,walking=0){let px=x*T+T/2,py=y*T+T/2;c.save();c.translate(px,py);c.fillStyle='#173b4936';c.beginPath();c.ellipse(0,13,15,7,0,0,Math.PI*2);c.fill();if(player){c.strokeStyle='#efb644';c.lineWidth=2;c.beginPath();c.ellipse(0,15,19,9,0,0,Math.PI*2);c.stroke();}let a=walking?Math.sin(walking)*2:0;c.fillStyle='#26384b';c.fillRect(-8,-1,7,15+a);c.fillRect(2,-1,7,15-a);rounded(c,-12,-16,24,22,5,color);if(player)rounded(c,-14,-13,9,18,3,'#dda94d');c.fillStyle='#e4b38b';c.beginPath();c.arc(0,-20,9,0,Math.PI*2);c.fill();c.fillStyle='#44343a';c.beginPath();c.arc(0,-23,9,Math.PI,2*Math.PI);c.fill();c.fillRect(-9,-24,18,5);c.fillStyle='#263d47';c.fillRect(2,-21,2,2);c.restore();}
+function drawBase(c,map){let d=dimensions(map);c.fillStyle='#aabfc0';c.fillRect(0,0,d.w*T,d.h*T);for(let y=0;y<d.h;y++)for(let x=0;x<d.w;x++){c.fillStyle=(x+y)%2?'#d8ded7':'#d4dbd6';c.fillRect(x*T+1,y*T+1,T-1,T-1);}c.strokeStyle='#829da5';c.lineWidth=9;c.strokeRect(T/2,T/2,(d.w-1)*T,(d.h-1)*T);}
+function drawMain(c){drawBase(c,'scl');c.fillStyle='#a1c5ca';c.fillRect(T,T,36*T,2*T);for(let x=1;x<37;x+=3){c.fillStyle='#476c79';c.fillRect(x*T,T,3,2*T);}c.fillStyle='#75909a';c.fillRect(0,0,38*T,T);label(c,'SCL · TERMINAL INTERNACIONAL',2*T,27,17,'#f4f5e8');
+// Clearly separated zones, control barriers and visible doors.
+c.fillStyle='#e0d8c6';c.fillRect(T,13*T,11*T,10*T);c.fillStyle='#c1d3d4';c.fillRect(13*T,2*T,7*T,21*T);c.fillStyle='#cddbd4';c.fillRect(21*T,7*T,16*T,16*T);
+rounded(c,4.4*T,8*T,6.5*T,5*T,14,'#b8c8d0');label(c,'ACLARACIÓN DE DATOS',4.7*T,8.7*T,12,'#365465');
+rounded(c,13.6*T,17*T,5.2*T,5*T,13,'#b4c9d0');label(c,'REVISIÓN AVSEC',14*T,17.7*T,12,'#365465');
+for(let x of [12,20])for(let y=1;y<23;y++){if((x===12&&y===16)||(x===20&&y===13))continue;c.fillStyle='#718f9b';c.fillRect(x*T+13,y*T,14,T);c.fillStyle='#8da6af';c.fillRect(x*T+13,y*T,4,T);}
+for(let [x,y,open]of[[12,16,s.clearances.pdi],[20,13,s.clearances.security],[33,6,s.clearances.boarding]]){c.fillStyle=open?'#61b88c':'#d9a446';c.fillRect(x*T,y*T+10,T,8);c.fillStyle='#37525b';c.fillRect(x*T,y*T,5,T);c.fillRect(x*T+35,y*T,5,T);label(c,open?'→':'●',x*T+20,y*T+32,18,open?'#2b7655':'#77511b','center');}
+c.fillStyle='#6d8994';c.fillRect(31*T+10,T,15,5*T);for(let x=31;x<37;x++){if(x===33)continue;c.fillStyle='#6d8994';c.fillRect(x*T,6*T+11,T,15);}
+desk(c,6,15,4);sign(c,'COUNTER · SIM 201',5.8*T,14*T,190);sign(c,'PDI →',9.6*T,19*T,85);desk(c,14,12,3);sign(c,'SEGURIDAD →',15*T,10.5*T,155);
+// Scanner belt.
+rounded(c,18.7*T,11.8*T,43,91,7,'#4a6573');rounded(c,18.8*T,12.25*T,35,47,4,'#263f50');c.fillStyle='#97d2b5';c.fillRect(18.9*T,12.4*T,27,24);
+desk(c,23,4,5);sign(c,'CAFÉ',23*T,3.2*T,90);
+for(let [x,y]of[[23,16],[27,16],[32,16],[23,19],[27,19],[32,19]])seats(c,x,y,3);
+for(let [x,y]of[[22,14],[30,17],[35,21],[3,13],[10,22],[14,5],[36,12]])plant(c,x*T,y*T);
+// Gate access and buses.
+sign(c,'C4 · OTRO VUELO',23.2*T,2.1*T,177);sign(c,'C8 · MADRID',31*T,4.5*T,172);sign(c,'SALAS DE EMBARQUE',24*T,13*T,210);
+rounded(c,33.5*T,1.5*T,3.1*T,1.6*T,10,'#f5e8b8');for(let i=0;i<4;i++)rounded(c,(33.7+i*.62)*T,1.65*T,18,23,3,'#4f7182');c.fillStyle='#273e4a';c.fillRect(34*T,3*T,17,7);c.fillRect(36*T,3*T,17,7);
+// Decorative passengers stay outside the principal paths.
+for(let [x,y,col]of[[23,17.8,'#a8756b'],[28,18,'#698c9b'],[34,17.8,'#8e769c'],[3,17,'#7f9d82'],[10,20,'#a08055']])sprite(c,x,y,col,false);
+// C8 pavement leads to the bus.
+c.strokeStyle='#e1b447';c.lineWidth=3;c.setLineDash([8,8]);c.beginPath();c.moveTo(33.5*T,8*T);c.lineTo(33.5*T,4*T);c.lineTo(35.5*T,4*T);c.stroke();c.setLineDash([]);
+}
+function drawPlane(c){drawBase(c,'plane');c.fillStyle='#284958';c.fillRect(0,0,3*T,18*T);c.fillRect(13*T,0,3*T,18*T);rounded(c,3*T,T,10*T,16*T,90,'#dae0da');c.fillStyle='#9aacb4';c.fillRect(7*T,2*T,2*T,14*T);for(let y=3;y<14;y+=2){seats(c,3,y,4);seats(c,9,y,4);}sign(c,'SIM 201 · CABINA',4*T,1.3*T,250);sign(c,'ACCESO',6*T,15.7*T,130);}
+function drawMadrid(c){drawBase(c,'mad');c.fillStyle='#c0d1cf';c.fillRect(T,T,20*T,6*T);for(let x=1;x<21;x++){if(x===8)continue;c.fillStyle='#688594';c.fillRect(x*T,7*T+12,T,14);}sign(c,'MADRID · LLEGADAS',2*T,14*T,230);sign(c,'CONTROL DE ENTRADA',5*T,3.5*T,230);rounded(c,12*T,2*T,7*T,5*T,12,'#b7c9d0');label(c,'ACLARACIÓN',12.5*T,2.8*T,13,'#456274');for(let [x,y,w]of rects.mad)seats(c,x,y,w);plant(c,18*T,14*T);plant(c,3*T,4*T);rounded(c,5.8*T,10*T,3*T,T,7,'#638f96');label(c,'ASISTENCIA',5.9*T,10.65*T,12,'#f8f1d7');c.fillStyle='#79bc9c';c.fillRect(8*T+7,7*T+14,26,9);}
+function drawActors(c,time){for(let [id,a]of actors()){if(id==='board'){rounded(c,a.x*T+2,a.y*T-5,36,43,5,'#243e51');c.fillStyle='#e7bf69';for(let i=0;i<4;i++)c.fillRect(a.x*T+7,a.y*T+3+i*7,25-(i%2)*8,3);}else if(id==='wronggate'){rounded(c,a.x*T+4,a.y*T+3,32,30,5,'#8c9b9e');label(c,'C4',a.x*T+20,a.y*T+23,12,'#233e4b','center');}else if(id==='cafe'){rounded(c,a.x*T+5,a.y*T+4,30,29,6,'#c6aa7c');label(c,'☕',a.x*T+20,a.y*T+27,23,'#4b3f34','center');}else sprite(c,a.x,a.y,a.color);
+let isTarget=id===TARGET[s.node],near=Math.hypot(a.x-s.pos.x,a.y-s.pos.y)<3.8;if(isTarget){let fy=a.y*T-44+Math.sin(time/350)*3;rounded(c,a.x*T+8,fy,24,25,7,'#f0ba4e');label(c,'!',a.x*T+20,fy+19,18,'#293942','center');}if(isTarget||near){let name=id==='board'?'SALIDAS':id==='wronggate'?'C4':a.name,w=Math.max(50,name.length*6.6+14);rounded(c,a.x*T+20-w/2,a.y*T+26,w,20,4,'#193947e8');label(c,name,a.x*T+20,a.y*T+40,10,'#f0f3e8','center');}}
+}
+function mobileUI(){return typeof window.matchMedia==='function'?window.matchMedia('(max-width:760px), (max-height:500px)').matches:(window.innerWidth||1280)<=760;}
+function syncViewport(){let height=window.visualViewport?.height||window.innerHeight;if(height&&document.documentElement?.style)document.documentElement.style.setProperty('--app-height',Math.round(height)+'px');}
+function resize(){let r=$('world-frame').getBoundingClientRect();if(r.width<1||r.height<1)return;cw=r.width;ch=r.height;viewScale=s?.zoom??(mobileUI()?(ch<300?.8:.9):1);dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(cw*dpr);canvas.height=Math.round(ch*dpr);}
+function zoomBy(delta){if(!s||s.finished)return;viewScale=Math.max(.65,Math.min(1.5,Math.round((viewScale+delta)*100)/100));s.zoom=viewScale;save();toast('Zoom del mapa: '+Math.round(viewScale*100)+'%');}
+function screenToWorld(x,y,rect,cam,scale){return{x:(x-rect.left)/scale+cam.x,y:(y-rect.top)/scale+cam.y};}
+
+function draw(time=0){if(!s||s.finished)return;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,cw,ch);let d=dimensions(),mapW=d.w*T,mapH=d.h*T;camera.x=Math.max(0,Math.min(mapW-cw/viewScale,s.pos.x*T+T/2-cw/viewScale/2));camera.y=Math.max(0,Math.min(mapH-ch/viewScale,s.pos.y*T+T/2-ch/viewScale/2));ctx.fillStyle='#375461';ctx.fillRect(0,0,cw,ch);ctx.save();ctx.scale(viewScale,viewScale);ctx.translate(-camera.x,-camera.y);let cacheKey=s.map+JSON.stringify(s.clearances);if(!mapCache||cacheKey!==mapCacheKey){mapCache=document.createElement('canvas');mapCache.width=mapW;mapCache.height=mapH;let bg=mapCache.getContext('2d');if(s.map==='scl')drawMain(bg);else if(s.map==='plane')drawPlane(bg);else drawMadrid(bg);mapCacheKey=cacheKey;}ctx.drawImage(mapCache,0,0);
+if(path.length){ctx.strokeStyle='#ddb75c77';ctx.lineWidth=3;ctx.setLineDash([4,7]);ctx.beginPath();ctx.moveTo(s.pos.x*T+20,s.pos.y*T+20);for(let p of path)ctx.lineTo(p.x*T+20,p.y*T+20);ctx.stroke();ctx.setLineDash([]);}drawActors(ctx,time);sprite(ctx,s.pos.x,s.pos.y,'#bb7258',true,moveTo?time/80:0);ctx.restore();let near=nearestActor();let talkLabel=(near?(near==='board'?'Consultar pantalla':near==='cafe'?'Consultar':'Hablar'):'Hablar')+(mobileUI()?'':' · E');if($('talk').textContent!==talkLabel)$('talk').textContent=talkLabel;}
+function manualStep(dir){if(!s||s.finished||modalType||moveTo)return;autoActor=null;fastWalk=false;path=[];let p={x:Math.round(s.pos.x),y:Math.round(s.pos.y)},[dx,dy]={up:[0,-1],down:[0,1],left:[-1,0],right:[1,0]}[dir];if(walkable(p.x+dx,p.y+dy))moveTo={from:p,to:{x:p.x+dx,y:p.y+dy},progress:0};else if(actorAt(p.x+dx,p.y+dy))toast('Pulsa Hablar o E para conversar.');else if(gateBlocked(p.x+dx,p.y+dy))toast('Completa el control antes de pasar.');}
+function frame(now){let dt=Math.min((now-lastFrame)/1000,.25);lastFrame=now;if(s&&!s.finished&&!$('playing').classList.contains('hidden')){if(!modalType){if(!moveTo&&path.length)moveTo={from:{...s.pos},to:path.shift(),progress:0};if(!moveTo&&held)manualStep(held);if(moveTo){moveTo.progress=Math.min(1,moveTo.progress+dt*(fastWalk?14:5.2));let u=moveTo.progress;s.pos.x=moveTo.from.x+(moveTo.to.x-moveTo.from.x)*u;s.pos.y=moveTo.from.y+(moveTo.to.y-moveTo.from.y)*u;if(u===1){s.pos={...moveTo.to};s.walked++;moveTo=null;save();if(path.length===0&&autoActor){let id=autoActor;autoActor=null;interact(id);}}}}if(now-lastDraw>33){draw(now);lastDraw=now;}}frameHandle=requestAnimationFrame(frame);}
+function worldClick(e){if(!s||modalType||s.finished||e.isPrimary===false)return;let r=canvas.getBoundingClientRect(),point=screenToWorld(e.clientX,e.clientY,r,camera,viewScale),x=Math.floor(point.x/T),y=Math.floor(point.y/T);let a=actorAt(x,y);if(!a){let near=actors().map(([id,actor])=>({id,actor,d:Math.hypot(actor.x+.5-point.x/T,actor.y+.5-point.y/T)})).filter(v=>v.d<.85).sort((a,b)=>a.d-b.d)[0];if(near)a=[near.id,near.actor];}if(a){x=a[1].x;y=a[1].y;}walkTo(x,y,a?.[0]||null);canvas.focus({preventScroll:true});}
+function showMap(){let d=dimensions();presentModal('Tu recorrido en el mapa',`<p class="context">Mapa esquemático del juego. Alex aparece en dorado y tu objetivo en verde.</p><canvas id="overview" width="760" height="500" style="width:100%;height:auto;border-radius:8px;background:#24414c" aria-label="Mapa completo del escenario"></canvas><p class="smallnote">Los pasos cambian de color cuando completas los controles. El mapa no representa el plano real ni las distancias del aeropuerto.</p><button class="btn primary" id="destinations">Elegir un destino para caminar</button>`,'map');let c=$('overview').getContext('2d'),scale=Math.min(760/(d.w*T),500/(d.h*T));c.save();c.scale(scale,scale);if(s.map==='scl')drawMain(c);else if(s.map==='plane')drawPlane(c);else drawMadrid(c);for(let [id,a]of actors()){c.fillStyle=id===TARGET[s.node]?'#0f9c66':'#37587a';c.beginPath();c.arc(a.x*T+20,a.y*T+20,id===TARGET[s.node]?17:8,0,Math.PI*2);c.fill();}c.fillStyle='#ffb816';c.beginPath();c.arc(s.pos.x*T+20,s.pos.y*T+20,17,0,Math.PI*2);c.fill();c.restore();$('destinations').onclick=accessible;}
+function introArt(){let c=$('intro-art').getContext('2d');c.fillStyle='#c5d5d0';c.fillRect(0,0,600,260);c.fillStyle='#91b7bd';c.fillRect(0,0,600,76);for(let x=0;x<600;x+=75){c.fillStyle='#416675';c.fillRect(x,0,5,76);}c.strokeStyle='#acbeb9';for(let x=0;x<600;x+=40){c.beginPath();c.moveTo(x,76);c.lineTo(x,260);c.stroke();}for(let y=100;y<260;y+=40){c.beginPath();c.moveTo(0,y);c.lineTo(600,y);c.stroke();}sign(c,'C8 → MADRID',361,25,185);seats(c,8,4,5);desk(c,1,3,3);sprite(c,2,5,'#bb7258',true);sprite(c,4,4,'#3896a6');plant(c,548,210);c.fillStyle='#f6c664';c.fillRect(210,205,110,3);label(c,'TU VIAJE COMIENZA AQUÍ',25,31,13,'#153d4e');}
+$('start').onclick=start;$('resume').onclick=()=>{s=loadSaved();if(s){s.clearances=s.clearances||{};s.pos={x:Math.round(s.pos.x),y:Math.round(s.pos.y)};path=[];moveTo=null;showGame();}};$('close').onclick=closeModal;$('modal').addEventListener('cancel',()=>{document.body.classList.remove('modal-open');modalType=null;held=null;});$('modal').addEventListener('close',()=>{if(!$('modal').open){document.body.classList.remove('modal-open');modalType=null;held=null;}});$('inventory').onclick=()=>inventory();$('inventory-top').onclick=()=>inventory();$('journal').onclick=diary;$('restart').onclick=backHome;$('map-btn').onclick=showMap;$('destinations-mobile').onclick=accessible;$('zoom-in').onclick=()=>zoomBy(.15);$('zoom-out').onclick=()=>zoomBy(-.15);$('help-btn').onclick=help;$('sources').onclick=sources;$('talk').onclick=talk;canvas.addEventListener('pointerdown',worldClick);window.addEventListener('resize',()=>{syncViewport();resize();});window.visualViewport?.addEventListener('resize',()=>{syncViewport();resize();});if(typeof ResizeObserver==='function')new ResizeObserver(resize).observe($('world-frame'));canvas.addEventListener('contextmenu',e=>e.preventDefault());window.addEventListener('blur',()=>held=null);document.addEventListener('visibilitychange',()=>{if(document.hidden){held=null;save();}});
+const KEYDIR={ArrowUp:'up',w:'up',W:'up',ArrowDown:'down',s:'down',S:'down',ArrowLeft:'left',a:'left',A:'left',ArrowRight:'right',d:'right',D:'right'};document.addEventListener('keydown',e=>{if(!s||s.finished||$('playing').classList.contains('hidden')||modalType||['INPUT','TEXTAREA'].includes(e.target.tagName))return;if(KEYDIR[e.key]){e.preventDefault();held=KEYDIR[e.key];path=[];autoActor=null;manualStep(held);}else if(['e','E',' '].includes(e.key)){e.preventDefault();if(!e.repeat)talk();}else if(['i','I'].includes(e.key))inventory();else if(['m','M'].includes(e.key))showMap();});document.addEventListener('keyup',e=>{if(KEYDIR[e.key]===held)held=null;});document.querySelectorAll('[data-move]').forEach(b=>{b.addEventListener('pointerdown',e=>{e.preventDefault();if(modalType)return;held=b.dataset.move;b.setPointerCapture(e.pointerId);manualStep(held);});for(let event of ['pointerup','pointercancel','lostpointercapture'])b.addEventListener(event,()=>held=null);});
+syncViewport();if(loadSaved())$('resume').classList.remove('hidden');introArt();
+window.RPG={NODES,ACTORS,TARGET,ITEMS,getState:()=>s,findPath,walkable,dimensions};
+
+</script></body></html>
